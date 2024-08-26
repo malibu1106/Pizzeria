@@ -1,0 +1,29 @@
+/* CLEAN CSS */
+@import "body_reset.css";
+/* FONTS */
+@import "fonts.css";
+
+
+/* Variables pour le mode clair */
+:root {
+    --background-color: #F2F2F2;
+    --text-color: #2B2B2B;
+    --primary-color: hsl(0, 65%, 51%, 1);
+    --primary-color-80: hsla(0, 65%, 51%, 0.8);
+    --primary-color-50: hsla(0, 65%, 51%, 0.5);
+    --secondary-color: hsla(123, 43%, 39%, 1);
+    --secondary-color-80: hsla(123, 43%, 39%, 0.8);
+    --secondary-color-50: hsla(123, 43%, 39%, 0.5);
+    --accent-color: #FFFFFF;
+}
+
+/* Variables pour le mode sombre */
+[data-theme='theme-dark'] {
+    --background-color: #2B2B2B;
+    --text-color: #F2F2F2;
+    --accent-color: #000000;
+}
+
+html {
+    scroll-behavior: smooth;
+}
