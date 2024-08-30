@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mer. 28 août 2024 à 11:21
+-- Généré le : ven. 30 août 2024 à 08:05
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -62,8 +62,10 @@ CREATE TABLE `dishes` (
   `type` varchar(255) NOT NULL,
   `is_new` tinyint(1) NOT NULL,
   `is_discounted` float(3,2) NOT NULL,
+  `sells_count` int NOT NULL DEFAULT '0',
   `pate_id` int DEFAULT NULL,
-  `base_id` int DEFAULT NULL
+  `base_id` int DEFAULT NULL,
+  `size_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -134,6 +136,19 @@ CREATE TABLE `pizzas_pates` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `extra_price` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pizzas_sizes`
+--
+
+CREATE TABLE `pizzas_sizes` (
+  `pizza_size_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `extra_price` decimal(5,2) NOT NULL DEFAULT '0.00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -242,6 +257,12 @@ ALTER TABLE `pizzas_pates`
   ADD PRIMARY KEY (`pizza_pate_id`);
 
 --
+-- Index pour la table `pizzas_sizes`
+--
+ALTER TABLE `pizzas_sizes`
+  ADD PRIMARY KEY (`pizza_size_id`);
+
+--
 -- Index pour la table `reviews`
 --
 ALTER TABLE `reviews`
@@ -310,6 +331,12 @@ ALTER TABLE `pizzas_bases`
 --
 ALTER TABLE `pizzas_pates`
   MODIFY `pizza_pate_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `pizzas_sizes`
+--
+ALTER TABLE `pizzas_sizes`
+  MODIFY `pizza_size_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `reviews`
