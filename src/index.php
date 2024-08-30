@@ -11,7 +11,7 @@
 
 <body>
     <h1>Pizza</h1>
-
+        <a href="test.php">Test SQL</a>
 
 </body>
 
