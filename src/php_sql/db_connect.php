@@ -8,7 +8,7 @@ $dsn = 'mysql:host=' . DBHOST . ';dbname=' . DBNAME . ';charset=utf8';
 
 try {
     $db = new PDO($dsn, DBUSER, DBPASS);
-    echo "Connexion BDD réussie";
+    // echo "Connexion BDD réussie";
 } catch (PDOException $error) {
     echo "Problème de connexion : ";
     echo $error->getMessage();

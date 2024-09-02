@@ -3,11 +3,13 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <script src="js/max_image_size_check.js" defer></script>
     <title>Ajouter une Pizza</title>
 </head>
 <body>
+    <a href="index.php">Accueil</a>
     <h1>Ajouter une Nouvelle Pizza</h1>
-    <form action="add_pizza.php" method="POST">
+    <form id="uploadForm" action="bo_add_pizza.php" method="POST" enctype="multipart/form-data">
         <label for="name">Nom de la pizza :</label>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -15,7 +17,7 @@
         <textarea id="description" name="description" required></textarea><br><br>
 
         <label for="image_url">URL de l'image :</label>
-        <input type="text" id="image_url" name="image_url" required><br><br>
+        <input type="file" id="image_url" name="image_url" accept=".jpg, .jpeg, .png, .gif" required/><br><br>
 
         <label for="price">Prix :</label>
         <input type="number" id="price" name="price" step="0.1" value="8" required><br><br>

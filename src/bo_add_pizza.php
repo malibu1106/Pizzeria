@@ -1,13 +1,23 @@
-<pre>
 <?php
+// ON DEMARRE DIRECTEMENT UNE SESSION POUR GERER LES MESSAGES A AFFICHER EN CAS DE PROBLEME
+session_start();
+?>
+<a href="index.php">Accueil</a>
+<?php
+
+echo '<pre>';
 print_r($_POST);
+echo '<pre>';
+echo '<pre>';
+print_r($_FILES);
+echo '<pre>';
 ?>
 </pre>
 
 <?php
 
-    if (isset($_POST) && !empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['image_url']) && 
-    !empty($_POST['price']) && !empty($_POST['is_new']) && !empty($_POST['is_discounted']) && !empty($_POST['base_id']) && !empty($_POST['ingredients'])){
+    if (isset($_POST) && !empty($_POST['name']) && !empty($_POST['description']) && !empty($_FILES['image_url']) && 
+    !empty($_POST['price']) && !empty($_POST['is_new']) && !empty($_POST['base_id']) && !empty($_POST['ingredients'])){
         
         // CONNEXION + MESSAGE TEMPORAIRE
         require_once('php_sql/db_connect.php');
@@ -16,16 +26,37 @@ print_r($_POST);
         // POST VALUES
         $name = strip_tags($_POST['name']);
         $description = strip_tags($_POST['description']);
-        $image_url = strip_tags($_POST['image_url']);
+        $image_url = strip_tags($_FILES['image_url']['name']);
         $base_price = strip_tags($_POST['price']); // Garde la valeur de base
         $is_new = strip_tags($_POST['is_new']) === 'on';
         $is_discounted = strip_tags($_POST['is_discounted']) / 100 ;
         $base_id = strip_tags($_POST['base_id']);
-        $ingredients = ($_POST['ingredients']); // temp
+        $ingredients = ($_POST['ingredients']);
 
         // AUTO VALUE
-        $type = "pizza";      
+        $type = "pizza";
         
+
+        //GESTION DE L'IMAGE
+        
+            $uploadDir = 'img/products/'; // DOSSIER OU L'ON STOCKERA NOS IMAGES
+            $imageFileType = strtolower(pathinfo($_FILES['image_url']['name'], PATHINFO_EXTENSION)); // EXTENSION DU FICHIER UPLOADE
+            $allowedTypes = array('jpg', 'jpeg', 'png', 'gif'); // EXTENSIONS AUTORISEES
+        
+            // Check if the file is an allowed image type
+            if(in_array($imageFileType, $allowedTypes)){ // SI L'EXTENSION DU FICHIER UPLOADE EST AUTORISEE
+                $newFileName = 'Pizza '. $name .'.'. $imageFileType;
+                $image_filename = $uploadDir . $newFileName;
+                move_uploaded_file($_FILES['image_url']['tmp_name'], $image_filename); // ON PUSH L'IMAGE DANS LE DOSSIER
+                }
+            else{
+                echo 'extension d\'image incorrecte'; // ERREUR SESSION ICI
+            }
+            
+            
+                
+            
+
 
         // RECUPERATION DES TAILLES ET DES PATES POUR INSERER LES PIZZAS DANS TOUTES LEURS DECLINAISONS POSSIBLES
 
@@ -64,7 +95,7 @@ print_r($_POST);
                 $query = $db->prepare($sql);
                 $query->bindValue(':name', $name);
                 $query->bindValue(':description', $description);
-                $query->bindValue(':image_url', $image_url);
+                $query->bindValue(':image_url', $image_filename);
                 $query->bindValue(':price', $current_price);
                 $query->bindValue(':type', $type);
                 $query->bindValue(':is_new', $is_new);
