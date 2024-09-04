@@ -11,8 +11,11 @@
 
 <body>
     <h1>Pizza</h1>
-        <a href="test_add_pizza.php">Test ajouter une pizza</a><br>
-        <a href="test_filtered_search.php">Test reherche filtrée</a>
+    <a href="test_create_pizza.php">Test ajouter une pizza</a><br>
+    <a href="test_filtered_search.php">Test reherche filtrée</a><br>
+    <a href="test_create_user.php">Test inscription</a><br>
+    <a href="test_create_ticket.php">Test contact</a><br>
+    <a href="test_show_cmd.php">Test details commandes</a><br>
 
 </body>
 

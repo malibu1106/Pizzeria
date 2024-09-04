@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Recherche de Pizzas</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Inclure jQuery avant Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="js/filtered_search_pizzas.js"></script>
 </head>
 <body>
 <a href="index.php">Accueil</a>
@@ -31,50 +32,6 @@
 <h3>Résultats des pizzas :</h3>
 <div id="pizza-results"></div>
 
-<script>
-    $(document).ready(function() {
-        // Initialiser Select2 avec les images
-        $('#ingredient-select').select2({
-            templateResult: formatState,
-            templateSelection: formatState
-        });
-
-        function formatState(state) {
-            if (!state.id) {
-                return state.text; // Affichage par défaut (text) si aucune image
-            }
-            var baseUrl = $(state.element).data('image');
-            var $state = $(
-                '<span><img src="' + baseUrl + '" class="img-flag" style="width: 20px; height: 20px; margin-right: 10px;"/>' + state.text + '</span>'
-            );
-            return $state;
-        }
-
-        // Fonction pour récupérer les résultats de la recherche
-        function fetchPizzas() {
-            const ingredientsArray = $('#ingredient-select').val();
-
-            // Requête AJAX pour récupérer les résultats
-            $.ajax({
-                type: 'POST',
-                url: 'search_pizzas_ajax.php',
-                data: { ingredients: JSON.stringify(ingredientsArray) },
-                success: function(response) {
-                    $('#pizza-results').html(response);
-                },
-                error: function() {
-                    $('#pizza-results').html('Une erreur est survenue lors de la recherche.');
-                }
-            });
-        }
-
-        // Ajoute un écouteur d'événements pour chaque changement de sélection
-        $('#ingredient-select').on('change', fetchPizzas);
-
-        // Charge initialement toutes les pizzas au démarrage
-        fetchPizzas();
-    });
-</script>
 
 </body>
 </html>

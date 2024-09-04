@@ -1,34 +1,19 @@
 <?php
 // ON DEMARRE DIRECTEMENT UNE SESSION POUR GERER LES MESSAGES A AFFICHER EN CAS DE PROBLEME
 session_start();
-?>
-<a href="index.php">Accueil</a>
-<?php
-
-echo '<pre>';
-print_r($_POST);
-echo '<pre>';
-echo '<pre>';
-print_r($_FILES);
-echo '<pre>';
-?>
-</pre>
-
-<?php
 
     if (isset($_POST) && !empty($_POST['name']) && !empty($_POST['description']) && !empty($_FILES['image_url']) && 
-    !empty($_POST['price']) && !empty($_POST['is_new']) && !empty($_POST['base_id']) && !empty($_POST['ingredients'])){
+    !empty($_POST['price']) && !empty($_POST['base_id']) && !empty($_POST['ingredients'])){
         
         // CONNEXION + MESSAGE TEMPORAIRE
         require_once('php_sql/db_connect.php');
-        echo '<br>formulaire complet<br>';
 
         // POST VALUES
         $name = strip_tags($_POST['name']);
         $description = strip_tags($_POST['description']);
         $image_url = strip_tags($_FILES['image_url']['name']);
         $base_price = strip_tags($_POST['price']); // Garde la valeur de base
-        $is_new = strip_tags($_POST['is_new']) === 'on';
+        $is_new = !empty($_POST['is_new']) ? (strip_tags($_POST['is_new']) === 'on') : 0;        
         $is_discounted = strip_tags($_POST['is_discounted']) / 100 ;
         $base_id = strip_tags($_POST['base_id']);
         $ingredients = ($_POST['ingredients']);
@@ -51,6 +36,7 @@ echo '<pre>';
                 }
             else{
                 echo 'extension d\'image incorrecte'; // ERREUR SESSION ICI
+                $_SESSION['info_message'] = "Extension d'image incorrecte";
             }
             
             
@@ -118,11 +104,17 @@ echo '<pre>';
             $query->bindValue(':dish_name', $name);
             $query->execute();
         }
+        $_SESSION['info_message'] = "Le produit a bien été ajouté.";
     }
+
+    
 
 
     else{
-        echo "Le formulaire n'a pas été rempli correctement. REDIRECTION ICI";
+        $_SESSION['info_message'] = "Le formulaire n'a pas été rempli correctement.";
+        
+        
     }
-
+    header('Location: test_create_pizza.php');// TEMP
+    exit(); // Bonne pratique d'ajouter un exit après un header pour arrêter l'exécution 
 ?>
