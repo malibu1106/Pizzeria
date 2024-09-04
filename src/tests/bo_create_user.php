@@ -12,7 +12,7 @@ if (isset($_POST) && !empty($_POST['first_name']) && !empty($_POST['last_name'])
         $password = strip_tags($_POST['password']);
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        require_once('php_sql/db_connect.php');
+        require_once('../php_sql/db_connect.php');
 
         // Vérifier si l'email existe déjà
         $sql = "SELECT * FROM users WHERE email = :email";
@@ -23,7 +23,7 @@ if (isset($_POST) && !empty($_POST['first_name']) && !empty($_POST['last_name'])
 
         if ($emailAlreadyUsed) { // SI L'ADRESSE MAIL EST DEJA UTILISEE
             $_SESSION['info_message'] = "Adresse email déjà utilisée.";
-            header('Location: signin.php'); // Redirection vers la page d'inscription
+            header('Location: test_create_user.php'); // Redirection vers la page d'inscription
             exit();
         } else { // SI L'ADRESSE MAIL EST DISPONIBLE
             // Inscription de l'utilisateur dans la base de données
@@ -37,20 +37,20 @@ if (isset($_POST) && !empty($_POST['first_name']) && !empty($_POST['last_name'])
             $query->execute();
 
             $_SESSION['info_message'] = "Inscription réussie.";
-            header('Location: index.php'); // Redirection vers la page d'accueil
+            header('Location: ../index.php'); // Redirection vers la page d'accueil
             exit();
         }
 
     } catch (PDOException $e) {
         // Gestion des erreurs de base de données
         $_SESSION['info_message'] = "Erreur lors de l'inscription : " . $e->getMessage();
-        header('Location: signin.php'); // Redirection vers la page d'inscription en cas d'erreur
+        header('Location: test_create_user.php'); // Redirection vers la page d'inscription
         exit();
     }
 
 } else {
     $_SESSION['info_message'] = "Formulaire mal rempli.";
-    header('Location: signin.php'); // Redirection vers la page d'inscription
+    header('Location: test_create_user.php'); // Redirection vers la page d'inscription
     exit();
 }
 ?>

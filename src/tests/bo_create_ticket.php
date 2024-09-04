@@ -20,7 +20,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP
 
         //GESTION DE L'IMAGE
         if($image_url !== "null"){
-        $uploadDir = 'tickets/attachments/'; // DOSSIER OU L'ON STOCKERA LES PIECES JOINTES
+        $uploadDir = '../tickets/attachments/'; // DOSSIER OU L'ON STOCKERA LES PIECES JOINTES
         $imageFileType = strtolower(pathinfo($_FILES['attachment']['name'], PATHINFO_EXTENSION)); // EXTENSION DU FICHIER UPLOADE
         $allowedTypes = array('jpg', 'jpeg', 'png', 'gif', 'pdf', 'bmp'); // EXTENSIONS AUTORISEES
     
@@ -37,7 +37,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP
         }
     }
          // CONNEXION + MESSAGE TEMPORAIRE
-         require_once('php_sql/db_connect.php');
+         require_once('../php_sql/db_connect.php');
 
         $sql = "INSERT INTO tickets (user_id, last_name, first_name, email, phone, order_id, object, message, attachment)
                         VALUES (:user_id, :last_name, :first_name, :email, :phone, :order_id, :object, :message, :attachment)";

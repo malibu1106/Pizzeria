@@ -2,7 +2,7 @@
 // Vérifie si la requête est une requête AJAX
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
     // Connexion à la base de données
-    require_once('php_sql/db_connect.php');
+    require_once('../php_sql/db_connect.php');
 
     // Récupère les IDs des ingrédients sélectionnés depuis la requête AJAX
     $selected_ingredients = json_decode($_POST['ingredients'], true);

@@ -6,7 +6,7 @@ session_start();
     !empty($_POST['price']) && !empty($_POST['base_id']) && !empty($_POST['ingredients'])){
         
         // CONNEXION + MESSAGE TEMPORAIRE
-        require_once('php_sql/db_connect.php');
+        require_once('../php_sql/db_connect.php');
 
         // POST VALUES
         $name = strip_tags($_POST['name']);
@@ -24,7 +24,7 @@ session_start();
 
         //GESTION DE L'IMAGE
         
-            $uploadDir = 'img/products/'; // DOSSIER OU L'ON STOCKERA NOS IMAGES
+            $uploadDir = '../img/products/'; // DOSSIER OU L'ON STOCKERA NOS IMAGES
             $imageFileType = strtolower(pathinfo($_FILES['image_url']['name'], PATHINFO_EXTENSION)); // EXTENSION DU FICHIER UPLOADE
             $allowedTypes = array('jpg', 'jpeg', 'png', 'gif'); // EXTENSIONS AUTORISEES
         

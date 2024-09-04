@@ -13,21 +13,21 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
     <title>Contact</title>
 </head>
 
-<body><a href="index.php">Accueil</a>
+<body><a href="../index.php">Accueil</a>
     <h2>Formulaire de contact</h2>
     <form action="bo_create_ticket.php" method="POST" enctype="multipart/form-data">
 
         <?php
         // Si l'utilisateur n'est pas connecté, inclure le formulaire pour nom prenom email
         if($_SESSION['loggedIn'] !== 1) {
-            include 'tickets/block_user_not_logged_in.html';
+            include '../tickets/block_user_not_logged_in.html';
         }
         ?>
 
         <?php
         // SI L'UTILISATEUR EST CONNECTÉ, VÉRIFIER S'IL A UN NUMÉRO DE TÉLÉPHONE ENREGISTRÉ
         if($_SESSION['loggedIn'] == 1) {
-            require_once('php_sql/db_connect.php'); // Inclure le fichier de connexion à la base de données
+            require_once('../php_sql/db_connect.php'); // Inclure le fichier de connexion à la base de données
             
             // Préparer la requête SQL pour récupérer le numéro de téléphone de l'utilisateur connecté
             $sql = "SELECT phone FROM users WHERE user_id = :user_id";
@@ -61,7 +61,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
         
         // Si l'utilisateur a des commandes, inclure le fichier correspondant
         if(!empty($user_orders)) {
-            include 'tickets/block_user_logged_in_and_have_order.php';
+            include '../tickets/block_user_logged_in_and_have_order.php';
         }
         ?>
 

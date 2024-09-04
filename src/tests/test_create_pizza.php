@@ -9,12 +9,12 @@ if(!empty($_SESSION['info_message'])){
 
 <head>
     <meta charset="UTF-8">
-    <script src="js/max_image_size_check.js" defer></script>
+    <script src="../js/max_image_size_check.js" defer></script>
     <title>Ajouter une Pizza</title>
 </head>
 
 <body>
-    <a href="index.php">Accueil</a>
+    <a href="../index.php">Accueil</a>
     <h1>Ajouter une Nouvelle Pizza</h1>
     <form id="uploadForm" action="bo_create_pizza.php" method="POST" enctype="multipart/form-data">
         <label for="name">Nom de la pizza :</label>
@@ -40,7 +40,7 @@ if(!empty($_SESSION['info_message'])){
             <option default disabled selected>Sélectionnez une base</option>
             <?php
 
-                require_once('php_sql/db_connect.php');
+                require_once('../php_sql/db_connect.php');
                 // REQUETE POUR LES PATES
                 $sql = "SELECT pizza_base_id, name, description FROM pizzas_bases";
 

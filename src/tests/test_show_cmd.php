@@ -13,10 +13,10 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
 </head>
 
 <body>
-    <a href="index.php">Accueil</a><br><br>
+    <a href="../index.php">Accueil</a><br><br>
 
     <?php
-        require_once('php_sql/db_connect.php');
+        require_once('../php_sql/db_connect.php');
 
         $sql = "
             SELECT 
