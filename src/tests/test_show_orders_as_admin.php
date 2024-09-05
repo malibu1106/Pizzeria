@@ -30,6 +30,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
         d.dish_id,          -- Ajout de l'ID du plat
         d.name as dish_name, 
         d.price as dish_price, 
+        d.type as dish_type,
         ci.quantity as dish_quantity,
         p_p.name as pate_name,   -- Récupère le nom de la pâte
         p_s.name as size_name,    -- Récupère le nom de la taille
@@ -66,7 +67,55 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
                 echo '<tr><td colspan="2">Date : '.$order['date_order'].'</td><td>Status : '.$order['order_status'].'</td></tr>';
             }
 
-            // Afficher les informations du plat (quantité, nom, taille, pâte, base)
+            if ($order['dish_type'] === "custom"){
+
+                // CUSTOM
+                // CUSTOM
+
+                // Afficher les informations du plat (quantité, nom, taille, pâte, base)
+            echo '<tr>';
+            echo '<td colspan="3"><strong>'.$order['dish_quantity'].' X '.$order['dish_name'].'</strong><br>';
+            echo $order['size_name'].', '.$order['pate_name'].', '.$order['base_name'].'</td>';
+            echo '</tr>';
+
+            // Calcul du sous-total pour chaque plat
+            $subtotal = $order['dish_price'] * $order['dish_quantity'];
+
+            // Récupérer les ingrédients pour le plat
+            
+            $sql_ingredients = "
+               SELECT i.name 
+               FROM personalized_pizzas pp
+               JOIN ingredients i ON pp.personalized_pizza_ingredient = i.ingredient_id   
+           ";
+
+            $query_ingredients = $db->prepare($sql_ingredients);
+
+            $query_ingredients->execute();
+            $ingredients = $query_ingredients->fetchAll(PDO::FETCH_ASSOC);
+
+            // Afficher les ingrédients
+            echo '<tr>';
+            echo '<td colspan="3"><strong>Ingrédients : </strong>';
+            $ingredient_names = array_column($ingredients, 'name');
+            echo implode(', ', $ingredient_names);
+            echo '</td>';
+            echo '</tr>';
+
+            // Afficher le prix unitaire et le sous-total
+            echo '<tr>';
+            echo '<td>Prix Unitaire : '.$order['dish_price'].'€</td>';
+            echo '<td colspan="2">Sous-total : '.$subtotal.'€</td>';
+            echo '</tr>';
+                
+            }
+            
+
+            //REGULAR
+            //REGULAR
+
+
+            else{// Afficher les informations du plat (quantité, nom, taille, pâte, base)
             echo '<tr>';
             echo '<td colspan="3"><strong>'.$order['dish_quantity'].' X '.$order['dish_name'].'</strong><br>';
             echo $order['size_name'].', '.$order['pate_name'].', '.$order['base_name'].'</td>';
@@ -103,6 +152,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
             echo '<td colspan="2">Sous-total : '.$subtotal.'€</td>';
             echo '</tr>';
         }
+    }
 
         // Afficher le total de la dernière commande
         if ($current_order_id !== null) {
