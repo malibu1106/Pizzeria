@@ -15,11 +15,11 @@ if(!empty($_SESSION['info_message'])){
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5 mx-auto">
         <a href="../index.php" class="btn btn-primary mb-4">Accueil</a>
         <h1 class="mb-4">Ajouter une Nouvelle Pizza</h1>
 
-        <form id="uploadForm" action="bo_create_pizza.php" method="POST" enctype="multipart/form-data"
+        <form class="bg-light" id="uploadForm" action="bo_create_pizza.php" method="POST" enctype="multipart/form-data"
             class="needs-validation" novalidate>
             <div class="mb-3 col-md-6">
                 <label for="name" class="form-label">Nom de la pizza :</label>
