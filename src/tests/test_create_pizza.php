@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!empty($_SESSION['info_message'])){
-    echo $_SESSION['info_message'];
+    echo '<div class="alert alert-info text-center">'.$_SESSION['info_message'].'</div>';
 } 
 ?>
 <!DOCTYPE html>
@@ -10,73 +10,129 @@ if(!empty($_SESSION['info_message'])){
 <head>
     <meta charset="UTF-8">
     <script src="../js/max_image_size_check.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Ajouter une Pizza</title>
 </head>
 
 <body>
-    <a href="../index.php">Accueil</a>
-    <h1>Ajouter une Nouvelle Pizza</h1>
-    <form id="uploadForm" action="bo_create_pizza.php" method="POST" enctype="multipart/form-data">
-        <label for="name">Nom de la pizza :</label>
-        <input type="text" id="name" name="name" required>*<br><br>
+    <div class="container mt-5">
+        <a href="../index.php" class="btn btn-primary mb-4">Accueil</a>
+        <h1 class="mb-4">Ajouter une Nouvelle Pizza</h1>
 
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" required></textarea>*<br><br>
+        <form id="uploadForm" action="bo_create_pizza.php" method="POST" enctype="multipart/form-data"
+            class="needs-validation" novalidate>
+            <div class="mb-3 col-md-6">
+                <label for="name" class="form-label">Nom de la pizza :</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+                <div class="invalid-feedback">
+                    Ce champ est requis.
+                </div>
+            </div>
 
-        <label for="image_url">URL de l'image :</label>
-        <input type="file" id="image_url" name="image_url" accept=".jpg, .jpeg, .png, .gif" required />*<br><br>
+            <div class="mb-3 col-md-6">
+                <label for="description" class="form-label">Description :</label>
+                <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+                <div class="invalid-feedback">
+                    Ce champ est requis.
+                </div>
+            </div>
 
-        <label for="price">Prix :</label>
-        <input type="number" id="price" name="price" step="0.1" value="8" required>*<br><br>
+            <div class="mb-3 col-md-6">
+                <label for="image_url" class="form-label">URL de l'image :</label>
+                <input type="file" id="image_url" name="image_url" class="form-control" accept=".jpg, .jpeg, .png, .gif"
+                    required>
+                <div class="invalid-feedback">
+                    Ce champ est requis.
+                </div>
+            </div>
 
-        <label for="is_new">Afficher dans les nouveautés :</label>
-        <input type="checkbox" id="is_new" name="is_new"><br><br>
+            <div class="mb-3 col-md-6">
+                <label for="price" class="form-label">Prix :</label>
+                <div class="input-group">
+                    <span class="input-group-text">€</span>
+                    <input type="number" id="price" name="price" class="form-control" step="0.1" value="8" required>
+                    <div class="invalid-feedback">
+                        Veuillez entrer un prix valide.
+                    </div>
+                </div>
+            </div>
 
-        <label for="is_discounted">Réduction :</label>
-        <input type="number" id="is_discounted" name="is_discounted" step="1" value="0">%</input><br><br>
+            <div class="form-check mb-3">
+                <input type="checkbox" id="is_new" name="is_new" class="form-check-input">
+                <label for="is_new" class="form-check-label">Afficher dans les nouveautés</label>
+            </div>
 
-        <label for="base_id">Base :</label>
-        <select id="base_id" name="base_id" required>
-            <option default disabled selected>Sélectionnez une base</option>
-            <?php
+            <div class="mb-3 col-md-6">
+                <label for="is_discounted" class="form-label">Réduction :</label>
+                <div class="input-group">
+                    <input type="number" id="is_discounted" name="is_discounted" class="form-control" step="1"
+                        value="0">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
 
-                require_once('../php_sql/db_connect.php');
-                // REQUETE POUR LES PATES
-                $sql = "SELECT pizza_base_id, name, description FROM pizzas_bases";
+            <div class="mb-3 col-md-6">
+                <label for="base_id" class="form-label">Base :</label>
+                <select id="base_id" name="base_id" class="form-select" required>
+                    <option default disabled selected>Sélectionnez une base</option>
+                    <?php
+                        require_once('../php_sql/db_connect.php');
+                        $sql = "SELECT pizza_base_id, name, description FROM pizzas_bases";
+                        $query = $db->prepare($sql);
+                        $query->execute();
+                        $bases = $query->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($bases as $base){
+                            echo '<option value="'.$base['pizza_base_id'].'">'.$base['description'].'</option>';
+                        }
+                    ?>
+                </select>
+                <div class="invalid-feedback">
+                    Veuillez sélectionner une base.
+                </div>
+            </div>
 
-                // PREPARATION DE LA REQUETE
-                $query = $db->prepare($sql);
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Ingrédients :</label>
+                <div class="row">
+                    <?php 
+                        $sql = "SELECT ingredient_id, name, description FROM ingredients";
+                        $query = $db->prepare($sql);
+                        $query->execute();
+                        $ingredients = $query->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($ingredients as $ingredient){
+                            echo '<div class="col-md-4">';
+                            echo '<div class="form-check">';
+                            echo '<input type="checkbox" name="ingredients[]" value="'.$ingredient['ingredient_id'].'" class="form-check-input">';
+                            echo '<label class="form-check-label">'.$ingredient['name'].'</label>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
+                </div>
+            </div>
 
-                //EXECUTION DE LA REQUETE + STOCK DES DONNEES DANS LA VARIABLE
-                $query->execute();
-                $bases = $query->fetchAll(PDO::FETCH_ASSOC);
+            <button type="submit" class="btn btn-success">Ajouter la Pizza</button>
+        </form>
+    </div>
 
-                foreach ($bases as $base){
-                    echo '<option value="'.$base['pizza_base_id'].'">'.$base['description'].'</option>';
-                }
-                ?>
-        </select>*<br><br>
+    <script>
+    (function() {
+        'use strict'
 
-        <label>Ingrédients :</label><br>
-        <?php 
-                // REQUETE POUR LES PATES
-                $sql = "SELECT ingredient_id, name, description FROM ingredients";
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-                // PREPARATION DE LA REQUETE
-                $query = $db->prepare($sql);
-
-                //EXECUTION DE LA REQUETE + STOCK DES DONNEES DANS LA VARIABLE
-                $query->execute();
-                $ingredients = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($ingredients as $ingredient){
-                    echo '<input type="checkbox" name="ingredients[]" value="'.$ingredient['ingredient_id'].'">'.$ingredient['name'].'<br>';
-                }
-                ?>
-
-
-        <br><input type="submit" value="Ajouter la Pizza">
-    </form>
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+    </script>
 </body>
 
 </html>

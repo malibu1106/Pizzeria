@@ -12,6 +12,11 @@
 <body>
     <h1>El Chorizo</h1>
 
+    <img id="language_switcher_button" alt="english language settings button" src="img/english_flag.svg">
+
+    <span id="onsenfoutdelid" data-translate="exemple_1">Je suis un exemple</span>
+    <div class="onsenfoutaussidelaclasse" data-translate="exemple_2">Rouge</div>
+
 
     <?php include 'tests/liens_tests.html';?>
 
