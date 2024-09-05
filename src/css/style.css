@@ -9,6 +9,15 @@
     --text-color: #f2f2f2;
     --title-color: #d98a6a;
     --box-color: #1d2833;
+    --size-xl: 2rem;
+    /* Titre principal (équivaut à environ 32px) */
+    --size-medium: 1.5rem;
+    /* Sous-titre ou grand texte (équivaut à environ 24px) */
+    --size-small: 1rem;
+    /* Paragraphe standard (équivaut à environ 16px) */
+    --size-very-small: 0.875rem;
+    /* Texte secondaire ou légende (équivaut à environ 14px) */
+
     /* --primary-color: hsl(0, 65%, 51%, 1);
     --primary-color-80: hsla(0, 65%, 51%, 0.8);
     --primary-color-50: hsla(0, 65%, 51%, 0.5);
@@ -39,4 +48,215 @@ html {
 
 body {
     background-color: var(--background-color);
+    font-family: "alata-regular";
 }
+
+.star-color {
+    color: gold;
+}
+
+.exemple {
+    color: purple;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    text-align: center;
+    font-size: var(--size-xl);
+    text-transform: uppercase;
+    font-family: "itim-regular";
+    color: var(--title-color);
+    font-weight: bolder;
+}
+
+.title-color {
+    color: var(--title-color);
+}
+
+.text-color {
+    color: var(--text-color)
+}
+
+.box-color {
+    background-color: var(--box-color);
+}
+
+.important-word {
+    font-family: "itim-regular";
+    text-transform: uppercase;
+    color: #d98a6a;
+}
+
+.h1-sous-titre {
+    font-size: var(--size-small);
+    text-align: center;
+    margin-top: -10px;
+}
+
+/* bandeau fixed */
+.container-bandeau {
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    align-items: center;
+}
+
+.container-bandeau>figure>a {
+    display: flex;
+    gap: 5px;
+}
+
+.container-bandeau>figure>a>figcaption {
+    text-transform: uppercase;
+    font-family: "itim-regular";
+    font-weight: bolder;
+}
+
+.bandeau-logo {
+    width: 25px;
+    height: 25px;
+}
+
+/* pizza of the day */
+.container-pizza-of-the-day {
+    margin: 5% auto;
+    width: 85%;
+}
+
+.img-pizza-of-the-day {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.container-pizza-of-the-day-text {
+    border-radius: 12px;
+    height: 250px;
+    position: relative;
+    z-index: 0;
+    margin-top: -5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.pizza-name {
+    color: var(--title-color);
+    text-align: center;
+    font-size: var(--size-medium);
+    padding: 2% 0%;
+    text-transform: uppercase;
+    font-family: "itim-regular";
+    padding-top: 5%;
+    font-weight: bold;
+}
+
+.description-pizza-of-the-day {
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-align: center;
+}
+
+/* section notre histoire */
+
+.notre-histoire-title {
+    margin-top: 5%;
+}
+
+.sous-titre {
+    text-align: center;
+}
+
+.container-notre-histoire {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.notre-histoire-description {
+    border-radius: 12px 12px 0px 0px;
+    position: relative;
+    z-index: 0;
+    height: auto;
+    padding: 2%;
+}
+
+.container-notre-histoire>img {
+    order: 2;
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+    margin-top: -5px;
+}
+
+.container-notre-histoire>figcaption {
+    order: 1;
+}
+
+.title-histoire {
+    font-size: var(--size-medium);
+    margin: 3%;
+    text-transform: uppercase;
+    font-family: "itim-regular";
+    font-weight: bold;
+}
+
+.notre-histoire-para {
+    padding-bottom: 2%;
+}
+
+/* une passion pour la qualité */
+
+.container-une-passion-pour-la-qualiter {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.container-double-img {
+    display: flex;
+}
+
+.container-une-passion-pour-la-qualiter>figcaption {
+    height: auto;
+    padding: 2%;
+    border-radius: 0px 0px 12px 12px;
+}
+
+.container-double-img>img {
+    width: 50%;
+    margin: auto;
+}
+
+.une-passion-pour-la-qualiter-img-1 {
+    border-radius: 12px 0px 0px 0px;
+}
+
+.une-passion-pour-la-qualiter-img-2 {
+    border-radius: 0px 12px 0px 0px;
+}
+
+/* ----- tablet ----- */
+@media all and (min-width: 768px) and (max-width: 1024px) {}
+
+/* ------ desktop ------  */
+@media (min-width: 1024px) {}
