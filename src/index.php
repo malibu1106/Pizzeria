@@ -15,6 +15,11 @@
 
 <body>
 
+    <img id="language_switcher_button" alt="english language settings button" src="img/english_flag.svg">
+
+    <span id="onsenfoutdelid" data-translate="exemple_1">Je suis un exemple</span>
+    <div class="onsenfoutaussidelaclasse" data-translate="exemple_2">Rouge</div>
+
     <header>
         <nav>
             <img src="../img/logo_desktop.png" alt="el chorizo logo">
