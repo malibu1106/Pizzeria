@@ -1,10 +1,10 @@
 {
-    "en": {
-        "exemple_1": "I'm an exemple",
-        "exemple_2": "Green"
-    },
-    "fr": {
-        "exemple_1": "Je suis un exemple",
-        "exemple_2": "Rouge"
-    }
+  "en": {
+    "exemple_1": "I'm an exemple",
+    "exemple_2": "Green"
+  },
+  "fr": {
+    "exemple_1": "Je suis un exemple",
+    "exemple_2": "Rouge"
+  }
 }

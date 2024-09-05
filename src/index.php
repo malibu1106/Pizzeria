@@ -26,7 +26,7 @@
             <img src="../img/logo_burger_menu.png" alt="logo burger menu">
             <ul class="">
                 <li>
-                    <a href="">Nos pizzas</a>
+                    <a data-translate="our pizzas" href="">Nos pizzas</a>
                 </li>
                 <li>
                     <a href="">Connexion</a>
@@ -193,8 +193,8 @@
 
 
     <?php include 'tests/liens_tests.html';?>
-    <span id="onsenfoutdelid" data-translate="exemple_1">Je suis un exemple</span>
-    <div class="onsenfoutaussidelaclasse" data-translate="exemple_2">Rouge</div>
+
+
 </body>
 
 </html>
