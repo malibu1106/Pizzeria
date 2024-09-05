@@ -24,9 +24,34 @@
     --accent-color: #000000;
 } */
 
+#language_switcher_button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin: 8px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
     background-color: var(--background-color);
 }
+
+nav {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 200px;
+    }
+}
+
+/* ----- tablet landscape ----- */
+@media all and (min-width: 768px) and (max-width: 1024px) {}
+
+/* ------ desktop ------  */
+@media (min-width: 1024px) {}

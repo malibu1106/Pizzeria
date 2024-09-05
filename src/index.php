@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/script.js" defer></script>
-    <link rel="icon" type="png" href="./img/favicon.png" />
+    <link rel="icon" type="png" href="../img/favicon.png" />
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/style.css">
     <title>El Chorizo</title>
 </head>
 
 <body>
 
-
     <header>
         <nav>
             <img src="../img/logo_desktop.png" alt="el chorizo logo">
-            <ul>
+            <img src="../img/logo_burger_menu.png" alt="logo burger menu">
+            <ul class="">
                 <li>
                     <a href="">Nos pizzas</a>
                 </li>
@@ -49,6 +52,28 @@
         </div>
         <!-- grid notre carte à venir -->
     </main>
+
+    <!-- bandeau fixed -->
+    <div class="container-livraison">
+        <figure>
+            <a class="" href="">
+                <img src="../img/logo_livraison.png" alt="logo livraison">
+                <figcaption>Livraison</figcaption>
+            </a>
+        </figure>
+        <figure>
+            <a class="" href="">
+                <img src="../img/logo_a_emporter.png" alt="logo a emporter">
+                <figcaption>A emporter</figcaption>
+            </a>
+        </figure>
+        <figure>
+            <a class="" href="">
+                <img src="../img/logo_sur_place.png" alt="logo sur place">
+                <figcaption>Sur place</figcaption>
+            </a>
+        </figure>
+    </div>
 
 
     <section>
@@ -99,7 +124,7 @@
     </section>
 
 
-    <section>
+    <section class="avis">
         <h4>Voici leurs avis</h4>
         <div class="container-avis">
             <div>
@@ -131,6 +156,7 @@
             <button type="submit">S'inscrire</button>
         </form>
     </section>
+
     <footer>
         <img src="" alt="">
         <div class="container-footer">
@@ -161,7 +187,9 @@
 
 
 
-    <!-- <?php include 'tests/liens_tests.html';?> -->
+    <?php include 'tests/liens_tests.html';?>
+    <span id="onsenfoutdelid" data-translate="exemple_1">Je suis un exemple</span>
+    <div class="onsenfoutaussidelaclasse" data-translate="exemple_2">Rouge</div>
 </body>
 
 </html>
