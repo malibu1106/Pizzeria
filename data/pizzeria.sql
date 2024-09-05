@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : jeu. 05 sep. 2024 à 07:31
+-- Généré le : jeu. 05 sep. 2024 à 13:53
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -40,7 +40,8 @@ CREATE TABLE `carts` (
 
 INSERT INTO `carts` (`cart_id`, `user_id`, `cart_status`, `date_creation`) VALUES
 (1, 1, 'en cours', '2024-09-03 11:52:55'),
-(2, 1, 'en cours', '2024-09-04 06:49:26');
+(2, 1, 'en cours', '2024-09-04 06:49:26'),
+(3, 2, 'en cours', '2024-09-05 07:54:51');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,8 @@ CREATE TABLE `cart_items` (
 INSERT INTO `cart_items` (`cart_item_id`, `cart_id`, `dish_id`, `quantity`) VALUES
 (1, 1, 76, 1),
 (2, 2, 148, 1),
-(3, 2, 161, 2);
+(3, 2, 161, 2),
+(4, 3, 154, 2);
 
 -- --------------------------------------------------------
 
@@ -125,7 +127,16 @@ INSERT INTO `dishes` (`dish_id`, `name`, `description`, `image_url`, `price`, `t
 (189, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 12.50, 'pizza', 0, 0.00, 0, 3, 1, 2),
 (190, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 11.00, 'pizza', 0, 0.00, 0, 1, 1, 3),
 (191, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 12.00, 'pizza', 0, 0.00, 0, 2, 1, 3),
-(192, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 13.50, 'pizza', 0, 0.00, 0, 3, 1, 3);
+(192, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 13.50, 'pizza', 0, 0.00, 0, 3, 1, 3),
+(193, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 5.00, 'custom', 0, 0.00, 0, 1, 1, 1),
+(194, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 6.00, 'custom', 0, 0.00, 0, 2, 1, 1),
+(195, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 7.50, 'custom', 0, 0.00, 0, 3, 1, 1),
+(196, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 7.00, 'custom', 0, 0.00, 0, 1, 1, 2),
+(197, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 8.00, 'custom', 0, 0.00, 0, 2, 1, 2),
+(198, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 9.50, 'custom', 0, 0.00, 0, 3, 1, 2),
+(199, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 8.00, 'custom', 0, 0.00, 0, 1, 1, 3),
+(200, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 9.00, 'custom', 0, 0.00, 0, 2, 1, 3),
+(201, 'Personnalisée', 'Choisissez vos propres ingrédients !', '../img/products/Pizza Personnalisée.png', 10.50, 'custom', 0, 0.00, 0, 3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -144,7 +155,6 @@ CREATE TABLE `dish_ingredients` (
 --
 
 INSERT INTO `dish_ingredients` (`dish_ingredient_id`, `dish_name`, `ingredient_id`) VALUES
-(154, 'Regina', 5),
 (155, 'Regina', 6),
 (156, 'Regina', 9),
 (157, 'Regina', 12),
@@ -223,7 +233,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`order_id`, `user_id`, `cart_id`, `date_order`, `total`, `order_status`) VALUES
 (1, 1, 1, '2024-09-03 11:54:03', 8.00, 'traitée'),
-(2, 1, 2, '2024-09-04 06:52:34', 31.40, 'en cours');
+(2, 1, 2, '2024-09-04 06:52:34', 31.40, 'en cours'),
+(3, 2, 3, '2024-09-05 07:55:29', 20.00, 'en cours');
 
 -- --------------------------------------------------------
 
@@ -288,9 +299,9 @@ CREATE TABLE `pizzas_sizes` (
 --
 
 INSERT INTO `pizzas_sizes` (`pizza_size_id`, `name`, `description`, `extra_price`) VALUES
-(1, 'S', 'Petite : 26cm', 0.00),
-(2, 'M', 'Moyenne : 30cm', 2.00),
-(3, 'L', 'Grande : 36cm', 3.00);
+(1, 'Normale', 'Normale : 26cm', 0.00),
+(2, 'Grande', 'Grande : 30cm', 2.00),
+(3, 'Très grande', 'Très grande : 36cm', 3.00);
 
 -- --------------------------------------------------------
 
@@ -446,25 +457,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `cart_item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cart_item_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `dishes`
 --
 ALTER TABLE `dishes`
-  MODIFY `dish_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `dish_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
 -- AUTO_INCREMENT pour la table `dish_ingredients`
 --
 ALTER TABLE `dish_ingredients`
-  MODIFY `dish_ingredient_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `dish_ingredient_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
 -- AUTO_INCREMENT pour la table `ingredients`
@@ -476,7 +487,7 @@ ALTER TABLE `ingredients`
 -- AUTO_INCREMENT pour la table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `pizzas_bases`
