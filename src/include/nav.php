@@ -6,7 +6,7 @@
 
             <ul class="burger-menu-links">
                 <li>
-                    <a href="../carte.php">Pizzas</a>
+                    <a href="../connexion.php">Pizzas</a>
                 </li>
                 <li>
                     <a href="../connexion.php">Connexion</a>
