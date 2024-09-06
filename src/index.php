@@ -15,19 +15,19 @@
 </head>
 
 <body>
-    <?php include 'tests/liens_tests.html';?>
+    <!-- <?php include 'tests/liens_tests.html';?> -->
 
     <header>
         <?php include_once './include/nav.php'; ?>
 
-        <!-- video a venir -->
         <p class="a-venir">VIDEO A VENIR</p>
-        <!-- video a venir -->
     </header>
 
     <main>
         <h1 class="title-color">La pizza du jour</h1>
         <p class="h1-sous-titre text-color">Chaque jour, découvrez une nouvelle pizza à l'honneur.</p>
+
+        <!-- a changer chaque jours en php pour afficher une pizza différente -->
         <figure class="container-pizza-of-the-day">
             <img class="img-pizza-of-the-day" src="../img/exemple_pizza.png" alt="pizza">
             <figcaption class="container-pizza-of-the-day-text box-color">
@@ -39,15 +39,15 @@
                     grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais.</p>
             </figcaption>
         </figure>
+        <!-- a changer chaque jours en php pour afficher une pizza différente -->
 
-        <!-- grid notre carte à venir -->
+
 
         <h2 class="title-color">Notre carte</h2>
         <div>
             <p class="a-venir">GRID A VENIR</p>
         </div>
 
-        <!-- grid notre carte à venir -->
     </main>
 
     <!-- bandeau fixed -->
@@ -77,9 +77,7 @@
 
     <!-- section notre histoire -->
     <section>
-        <div class="container-notre-histoire-title box-color">
-            <h3 class="notre-histoire-title title-color">Notre histoire</h3>
-        </div>
+        <h3 class="notre-histoire-title title-color box-color">Notre histoire</h3>
         <p class="sous-titre text-color">Bienvenue chez <span class="important-word">el chorizo</span>,
             là
             où la
@@ -149,6 +147,7 @@
         <div class="container-avis">
 
 
+            <!-- foreach pour afficher un maximum de 4 commentaire -->
 
             <!-- <div class="avis">
                 <div class="container-name-avis">
@@ -159,7 +158,8 @@
             </div> -->
 
 
-            <!-- a remplacer par des commentaire récupérer en bdd -->
+
+            <!-- a remplacer par des commentaire récupérer en bdd, dois etre supprimer une fois cela fait -->
             <div class="avis">
                 <div class="container-name-avis">
                     <p class="title-color">Jean Dupont</p>
@@ -196,7 +196,11 @@
                     Je ne reviendrai
                     pas.</p>
             </div>
+            <!-- a remplacer par des commentaire récupérer en bdd, dois etre supprimer une fois cela fait -->
         </div>
+
+
+
         <div class="container-newsletter">
             <h5 class="title-color">Newsletter</h5>
             <p class="text-color">Abonnez-vous à notre newsletter pour découvrir en avant-première nos
@@ -209,7 +213,7 @@
                 <input class="form-input" type="email" name="email" placeholder=" " id="Email" />
                 <label class="form-label" for="Email">Email</label>
             </div>
-            <button class="text-color" type="submit">S'inscrire</button>
+            <button type="submit">S'inscrire</button>
         </form>
     </section>
 

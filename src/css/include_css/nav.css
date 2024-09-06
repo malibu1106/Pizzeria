@@ -22,6 +22,7 @@ nav {
     font-family: "itim-regular";
     text-transform: uppercase;
     font-weight: bold;
+    padding: 0% 5%;
 }
 
 .logo-navbar {
@@ -42,22 +43,28 @@ nav {
         display: none;
     }
 
+    .accueil {
+        max-width: 300px;
+        margin-left: 4%;
+    }
+
+    .logo-navbar {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+    }
+
     nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .logo-navbar {
-        width: 30%;
-        margin-left: 8%;
-    }
-
     .burger-menu-links {
         display: contents;
         display: flex;
         gap: 30px;
-        margin-right: 8%;
+        margin-right: 3%;
     }
 
     .burger-menu-links {
@@ -83,7 +90,6 @@ nav {
             color: var(--title-color);
             text-transform: uppercase;
             text-decoration: none;
-            letter-spacing: 0.15em;
 
             display: inline-block;
             padding: 5px;

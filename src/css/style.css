@@ -145,17 +145,14 @@ h5 {
 }
 
 /* section notre histoire */
-.container-notre-histoire-title {
-    height: 100px;
-}
 
 .notre-histoire-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 3%;
+    padding: 1% 0%;
     text-decoration: underline 3px;
-    padding-top: 4%;
 }
 
 .sous-titre {
@@ -296,7 +293,6 @@ form {
     border-bottom: 2px solid var(--title-color);
     outline: 0;
     width: 100%;
-    font-size: 1.3rem;
     color: var(--color-white);
     padding: 7px 0;
     background: transparent;
@@ -309,7 +305,6 @@ form {
 }
 
 .form-input:placeholder-shown~.form-label {
-    font-size: 1.3rem;
     cursor: text;
     top: 20px;
     color: var(--text-color);
@@ -320,13 +315,11 @@ form {
     top: 0;
     display: block;
     transition: 0.2s;
-    font-size: 1rem;
     color: var(--text-color);
 }
 
 .form-input:focus {
     padding-bottom: 6px;
-    font-weight: 700;
     border-width: 3px;
     border-image-slice: 1;
     color: var(--text-color);
@@ -334,9 +327,7 @@ form {
 
 .form-input:focus~.form-label {
     top: 0;
-    font-size: 1rem;
     color: var(--text-color);
-    font-weight: 700;
 }
 
 form>button {
@@ -346,12 +337,14 @@ form>button {
     height: 40PX;
     width: 100px;
     padding: 2%;
-    background: var(--box-color);
-    border: 2px solid var(--title-color);
+    background: var(--title-color);
+    color: var(--box-color);
+    border: transparent;
     border-radius: 12px;
     font-family: "itim-regular";
     cursor: pointer;
     transition: 0.1s ease-in;
+    font-weight: bold;
 }
 
 /* section newsletter */
@@ -439,21 +432,8 @@ h5 {
 
     /* newsletter */
     form>button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         height: 40PX;
         width: 100px;
         padding: 1%;
-        background: var(--box-color);
-        border: 2px solid var(--title-color);
-        border-radius: 12px;
-        font-family: "itim-regular";
-        cursor: pointer;
-        transition: 0.1s ease-in;
-    }
-
-    form>button:hover {
-        background: var(--background-color);
     }
 }
