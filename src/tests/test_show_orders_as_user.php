@@ -19,33 +19,46 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
 
         // Requête SQL mise à jour pour récupérer les pates et tailles
         $sql = "
-    SELECT 
-        o.order_id, 
-        o.date_order, 
-        o.date_order, 
-        o.order_status, 
-        o.total, 
-        d.dish_id,          -- Ajout de l'ID du plat
-        d.name as dish_name, 
-        d.price as dish_price, 
-        ci.quantity as dish_quantity,
-        p_p.name as pate_name,   -- Récupère le nom de la pâte
-        p_s.name as size_name,    -- Récupère le nom de la taille
-        p_b.name as base_name     -- Récupère le nom de la base
-    FROM orders o
-    JOIN cart_items ci ON o.cart_id = ci.cart_id
-    JOIN dishes d ON ci.dish_id = d.dish_id
-    LEFT JOIN pizzas_pates p_p ON d.pate_id = p_p.pizza_pate_id  -- Jointure pour les pâtes
-    LEFT JOIN pizzas_sizes p_s ON d.size_id = p_s.pizza_size_id  -- Jointure pour les tailles
-    LEFT JOIN pizzas_bases p_b ON d.base_id = p_b.pizza_base_id  -- Jointure pour les tailles
-    WHERE o.user_id = :user_id
-    ORDER BY o.order_id, d.name
-";
+        SELECT 
+    o.order_id, 
+    o.date_order, 
+    o.order_status, 
+    o.total, 
+    IF(ci.dish_id = 0, cp.custom_pizza_id, d.dish_id) as dish_id,   -- Utilisation de l'ID du plat ou de la pizza custom
+    IF(ci.dish_id = 0, cp.name, d.name) as dish_name,               -- Nom du plat ou de la pizza custom
+    IF(ci.dish_id = 0, cp.price, d.price) as dish_price,            -- Prix du plat ou de la pizza custom
+    ci.quantity as dish_quantity,
+    IF(ci.dish_id = 0, p_p.name, p_p2.name) as pate_name,           -- Nom de la pâte (pâte custom ou plat standard)
+    IF(ci.dish_id = 0, p_s.name, p_s2.name) as size_name,           -- Nom de la taille (taille custom ou plat standard)
+    IF(ci.dish_id = 0, p_b.name, p_b2.name) as base_name,           -- Nom de la base (base custom ou plat standard)
+    IF(ci.dish_id = 0, 'custom', 'standard') as dish_type           -- Type custom ou standard
+FROM orders o
+JOIN cart_items ci ON o.cart_id = ci.cart_id
+
+-- Jointures pour les plats standards
+LEFT JOIN dishes d ON ci.dish_id = d.dish_id
+LEFT JOIN pizzas_pates p_p2 ON d.pate_id = p_p2.pizza_pate_id
+LEFT JOIN pizzas_sizes p_s2 ON d.size_id = p_s2.pizza_size_id
+LEFT JOIN pizzas_bases p_b2 ON d.base_id = p_b2.pizza_base_id
+
+-- Jointures pour les pizzas personnalisées
+LEFT JOIN custom_pizzas cp ON ci.custom_pizza_id = cp.custom_pizza_id
+LEFT JOIN pizzas_pates p_p ON cp.pate_id = p_p.pizza_pate_id
+LEFT JOIN pizzas_sizes p_s ON cp.size_id = p_s.pizza_size_id
+LEFT JOIN pizzas_bases p_b ON cp.base_id = p_b.pizza_base_id
+
+WHERE o.user_id = :user_id
+ORDER BY o.order_id, dish_name
+    ";
 
         $query = $db->prepare($sql);
         $query->bindValue(':user_id', $_SESSION['logged_user_id']);
         $query->execute();
         $user_orders = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        // echo '<pre>';
+        // print_r($user_orders);
+        // echo '</pre>';
 
         $current_order_id = null;
 
@@ -74,7 +87,23 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
             // Calcul du sous-total pour chaque plat
             $subtotal = $order['dish_price'] * $order['dish_quantity'];
 
-            // Récupérer les ingrédients pour le plat
+           // Vérifier si c'est une pizza custom
+           if ($order['dish_type'] === 'custom') {
+            // Récupérer les ingrédients pour la pizza personnalisée via custom_pizza_id
+            $custom_pizza_id = $order['dish_id'];
+            $sql_ingredients = "
+               SELECT i.name 
+               FROM custom_pizzas_ingredients cpi
+               JOIN ingredients i ON cpi.ingredient_id = i.ingredient_id
+               WHERE cpi.custom_pizza_id = :custom_pizza_id
+           ";
+
+            $query_ingredients = $db->prepare($sql_ingredients);
+            $query_ingredients->bindValue(':custom_pizza_id', $custom_pizza_id);
+            $query_ingredients->execute();
+            $ingredients = $query_ingredients->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // Récupérer les ingrédients pour un plat standard via dish_name
             $dish_name = $order['dish_name'];
             $sql_ingredients = "
                SELECT i.name 
@@ -87,7 +116,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
             $query_ingredients->bindValue(':dish_name', $dish_name);
             $query_ingredients->execute();
             $ingredients = $query_ingredients->fetchAll(PDO::FETCH_ASSOC);
-
+        }
             // Afficher les ingrédients
             echo '<tr>';
             echo '<td colspan="3">';
@@ -108,6 +137,9 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
             echo '<tr><td colspan="2"><strong>Total</strong></td><td><strong>'.$previous_order_total.'€</strong></td></tr>';
             echo '</tbody></table>';
         }
+
+
+        
     ?>
 </body>
 
