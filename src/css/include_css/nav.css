@@ -1,7 +1,27 @@
+:root {
+    --background-color: #235a47;
+    --text-color: #f2f2f2;
+    --title-color: #d98a6a;
+    --box-color: #1d2833;
+    --size-xl: 2rem;
+    --size-medium: 1.5rem;
+    --size-small: 1rem;
+    --size-very-small: 0.875rem;
+    /* desktop size font */
+    --desktop-size-xl: 3rem;
+    --desktop-size-medium: 2rem;
+    --desktop-size-small: 1.125rem;
+    --desktop-size-very-small: 1rem;
+
+}
+
 nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "itim-regular";
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .logo-navbar {
@@ -16,8 +36,76 @@ nav {
     display: none;
 }
 
-/* ----- tablet ----- */
-@media all and (min-width: 768px) and (max-width: 1024px) {}
+/* ----- tablet and desktop ----- */
+@media all and (min-width: 768px) {
+    .burger-menu {
+        display: none;
+    }
 
-/* ------ desktop ------  */
-@media (min-width: 1024px) {}
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-navbar {
+        width: 30%;
+        margin-left: 8%;
+    }
+
+    .burger-menu-links {
+        display: contents;
+        display: flex;
+        gap: 30px;
+        margin-right: 8%;
+    }
+
+    .burger-menu-links {
+        color: var(--title-color);
+        font-size: var(--size-xl);
+
+        ul {
+            margin: 150px auto 0;
+            padding: 0;
+            list-style: none;
+            display: table;
+            width: 600px;
+            text-align: center;
+        }
+
+        li {
+            display: table-cell;
+            position: relative;
+            padding: 15px 0;
+        }
+
+        a {
+            color: var(--title-color);
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.15em;
+
+            display: inline-block;
+            padding: 5px;
+            position: relative;
+        }
+
+        a:after {
+            background: none repeat scroll 0 0 transparent;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            background: var(--title-color);
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            width: 0;
+        }
+
+        a:hover:after {
+            width: 100%;
+            left: 0;
+        }
+    }
+}

@@ -1,19 +1,30 @@
-    <footer>
-        <img src="" alt="">
+    <footer class="box-color">
         <div class="container-footer">
             <div>
-                <p>Nous contacter</p>
-                <ul>
+                <p class="footer-title">Nous contacter</p>
+                <ul class="container-footer-info">
                     <li>El-chorizo@gmail.com</li>
                     <li>00.00.00.00.00</li>
                     <li><a href="">Formulaire</a></li>
                 </ul>
             </div>
-            <div>
-                <p>Retrouvez-nous sur</p>
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
+            <div class="container-footer-logo">
+                <p class="footer-title">Retrouvez-nous sur</p>
+                <div class="container-footer-logo-img">
+                    <a href="https://www.instagram.com">
+                        <img class="footer-logo-animation footer-logo-reseaux" src="../img/logo_instagram.png"
+                            alt="logo instagram">
+                    </a>
+                    <a href="https://twitter.com">
+                        <img class="footer-logo-animation footer-logo-reseaux" src="../img/logo_twitter.png"
+                            alt="logo twitter">
+                    </a>
+                    <a href="https://www.facebook.com">
+                        <img class="footer-logo-animation footer-logo-reseaux" src="../img/logo_facebook.png"
+                            alt="logo facebook">
+                    </a>
+                </div>
             </div>
         </div>
+        <img class="logo-el-chorizo-footer-responsive" src="../img/el_chorizo_logo_footer.png" alt="logo">
     </footer>

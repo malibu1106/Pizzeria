@@ -15,48 +15,38 @@
 </head>
 
 <body>
+    <?php include 'tests/liens_tests.html';?>
 
     <header>
         <?php include_once './include/nav.php'; ?>
 
-        <p>VIDEO A VENIR</p>
+        <!-- video a venir -->
+        <p class="a-venir">VIDEO A VENIR</p>
+        <!-- video a venir -->
     </header>
-
 
     <main>
         <h1 class="title-color">La pizza du jour</h1>
-        <p class="h1-sous-titre text-color">Chaque jour, découvrez une nouvelle pizza
-            à l'honneur.</p>
-
-
-
-
-
-
-        <div class="container-pizza-of-the-day">
-            <figure>
-                <img class="img-pizza-of-the-day" src="../img/exemple_pizza.png" alt="pizza">
-            </figure>
-            <div class="container-pizza-of-the-day-text box-color">
+        <p class="h1-sous-titre text-color">Chaque jour, découvrez une nouvelle pizza à l'honneur.</p>
+        <figure class="container-pizza-of-the-day">
+            <img class="img-pizza-of-the-day" src="../img/exemple_pizza.png" alt="pizza">
+            <figcaption class="container-pizza-of-the-day-text box-color">
                 <p class="pizza-name">Nom de la pizza</p>
                 <p class="description-pizza-of-the-day text-color">Cette pizza est garnie de sauce tomate épicée, de
                     mozzarella
                     fondue, de chorizo, de
                     poivrons rouges
                     grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais.</p>
-            </div>
-        </div>
+            </figcaption>
+        </figure>
 
-
-
-
-
+        <!-- grid notre carte à venir -->
 
         <h2 class="title-color">Notre carte</h2>
-        <!-- grid notre carte à venir -->
         <div>
-            <p>A VENIR</p>
+            <p class="a-venir">GRID A VENIR</p>
         </div>
+
         <!-- grid notre carte à venir -->
     </main>
 
@@ -69,12 +59,14 @@
                 <figcaption class="text-color">Livraison</figcaption>
             </a>
         </figure>
+
         <figure>
             <a class="" href="">
                 <img class="bandeau-logo" src="../img/logo_a_emporter.png" alt="logo a emporter">
                 <figcaption class="text-color">A emporter</figcaption>
             </a>
         </figure>
+
         <figure>
             <a class="" href="">
                 <img class="bandeau-logo" src="../img/logo_sur_place.png" alt="logo sur place">
@@ -83,22 +75,23 @@
         </figure>
     </div>
 
-
+    <!-- section notre histoire -->
     <section>
-        <h3 class="notre-histoire-title title-color">Notre histoire</h3>
+        <div class="container-notre-histoire-title box-color">
+            <h3 class="notre-histoire-title title-color">Notre histoire</h3>
+        </div>
         <p class="sous-titre text-color">Bienvenue chez <span class="important-word">el chorizo</span>,
             là
             où la
             passion pour
             la pizza rencontre la tradition familiale !</p>
 
-
+        <!-- histoire partie 1 -->
         <figure class="container-notre-histoire">
             <img src="../img/notre_histoire.png" alt="pizza qui sort du four">
             <figcaption class="box-color notre-histoire-description">
-                <p class="title-color title-histoire">Plus Qu'une Simple Pizzeria</p>
-                <p class="notre-histoire-para text-color">Tout a commencé il y a 5 ans, lorsque <span
-                        class="important-word">gino
+                <p class="title-color notre-histoire-title-card">Plus Qu'une Simple Pizzeria</p>
+                <p class="text-color">Tout a commencé il y a 5 ans, lorsque <span class="important-word">gino
                         chorizo</span> a ouvert
                     les portes de notre
                     première pizzeria
@@ -111,18 +104,16 @@
             </figcaption>
         </figure>
 
-
-        <figure class="container-une-passion-pour-la-qualiter">
-
+        <!-- histoire partie 2 -->
+        <figure class="container-notre-histoire">
             <div class="container-double-img">
                 <img class="une-passion-pour-la-qualiter-img-1" src="../img/une_passion_pour_la_qualiter.png"
                     alt="fabrication d'une pizza">
                 <img class="une-passion-pour-la-qualiter-img-2" src="../img/une_passion_pour_la_qualiter_2.png"
                     alt="pizza">
             </div>
-
-            <figcaption class="box-color">
-                <p class="title-color">Une Passion pour la Qualité</p>
+            <figcaption class="box-color notre-histoire-description-2">
+                <p class="notre-histoire-title-card title-color">Une Passion pour la Qualité</p>
                 <p class="text-color">Chez <span class="important-word">el chorizo</span>, nous croyons que la
                     qualité commence par les
                     ingrédients. Nous
@@ -131,16 +122,13 @@
                     soin. Chaque pizza est faite à la main, pétrie avec amour et cuite à la perfection dans notre
                     four traditionnel, pour une croûte croustillante et des saveurs inoubliables.</p>
             </figcaption>
-
         </figure>
 
-
-        <figure class="container-une-histoire-de-famille">
-
+        <!-- histoire partie 3 -->
+        <figure class="container-notre-histoire">
             <img src="../img/une_histoire_de_famille.png" alt="partage_de_pizza">
-
-            <figcaption class="box-color">
-                <p class="title-color">Une Histoire de Famille</p>
+            <figcaption class="box-color notre-histoire-description">
+                <p class="notre-histoire-title-card title-color">Une Histoire de Famille</p>
                 <p class="text-color">Nous sommes fiers d'être une entreprise familiale, où chaque membre de
                     l'équipe fait partie de
                     notre grande famille <span class="important-word">el chorizo</span>. Nous croyons en
@@ -150,18 +138,30 @@
                     amis, ou simplement pour une pause gourmande, nous sommes là pour rendre chaque moment spécial.
                 </p>
             </figcaption>
-
         </figure>
-
-
     </section>
 
 
-    <section class="avis">
+    <section class="avis box-color">
         <h4 class="title-color">Voici leurs avis</h4>
+
+        <!-- section avis -->
         <div class="container-avis">
-            <div>
-                <div>
+
+
+
+            <!-- <div class="avis">
+                <div class="container-name-avis">
+                    <p class="title-color">NOM DE LA PERSONNE</p>
+                    <p class="star-color">NOMBRE D'ETOILES &#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                </div>
+                <p class="text-color">COMMENTAIRE</p>
+            </div> -->
+
+
+            <!-- a remplacer par des commentaire récupérer en bdd -->
+            <div class="avis">
+                <div class="container-name-avis">
                     <p class="title-color">Jean Dupont</p>
                     <p class="star-color">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                 </div>
@@ -169,8 +169,8 @@
                     recommande vivement
                     !</p>
             </div>
-            <div>
-                <div>
+            <div class="avis">
+                <div class="container-name-avis">
                     <p class="title-color">Marie Leblanc</p>
                     <p class="star-color">&#9733;&#9733;&#9733;&#9733;</p>
                 </div>
@@ -178,8 +178,8 @@
                     reste une bonne
                     expérience !</p>
             </div>
-            <div>
-                <div>
+            <div class="avis">
+                <div class="container-name-avis">
                     <p class="title-color">Paul Martin</p>
                     <p class="star-color">&#9733;&#9733;&#9733;</p>
                 </div>
@@ -187,8 +187,8 @@
                     le rapport
                     qualité-prix est moyen.</p>
             </div>
-            <div>
-                <div>
+            <div class="avis">
+                <div class="container-name-avis">
                     <p class="title-color">Claire Durand</p>
                     <p class="star-color">&#9733;&#9733;</p>
                 </div>
@@ -197,21 +197,23 @@
                     pas.</p>
             </div>
         </div>
-        <h5 class="title-color">Newsletter</h5>
-        <p class="text-color">Abonnez-vous à notre newsletter pour découvrir en avant-première nos
-            nouvelles pizzas et profiter d'offres
-            exclusives. Ne manquez aucune de nos délicieuses créations chez <span class="important-word">el
-                chorizo</span> !</p>
+        <div class="container-newsletter">
+            <h5 class="title-color">Newsletter</h5>
+            <p class="text-color">Abonnez-vous à notre newsletter pour découvrir en avant-première nos
+                nouvelles pizzas et profiter d'offres
+                exclusives. Ne manquez aucune de nos délicieuses créations chez <span class="important-word">el
+                    chorizo</span> !</p>
+        </div>
         <form action="#" method="post">
-            <input type="email" name="email" placeholder="Email" required>
-            <button type="submit">S'inscrire</button>
+            <div class="form-group">
+                <input class="form-input" type="email" name="email" placeholder=" " id="Email" />
+                <label class="form-label" for="Email">Email</label>
+            </div>
+            <button class="text-color" type="submit">S'inscrire</button>
         </form>
     </section>
 
     <?php include_once './include/footer.php'; ?>
-
-    <?php include 'tests/liens_tests.html';?>
-
 </body>
 
 </html>
