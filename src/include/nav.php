@@ -6,10 +6,10 @@
 
             <ul class="burger-menu-links">
                 <li>
-                    <a href="../connexion.php">Nos pizzas</a>
+                    <a href="../carte.php">Nos pizzas</a>
                 </li>
                 <li>
-                    <a href="../carte.php">Connexion</a>
+                    <a href="../connexion.php">Connexion</a>
                 </li>
             </ul>
         </nav>
