@@ -12,11 +12,15 @@
 
 <body>
     <a href="../index.php">Accueil</a>
+    <a href="#" class="filter-link" data-filter="">Toutes nos pizzas</a>
+    <a href="#" class="filter-link" data-filter="is_classic">Les classiques</a>
+    <a href="#" class="filter-link" data-filter="is_new">Les nouveautés</a>
+    <a href="#" class="filter-link" data-filter="sells_count">Les + demandées</a>
     <h3>Sélectionnez des ingrédients :</h3>
     <form id="ingredient-form">
         <?php
     // Connexion à la base de données et récupération des ingrédients
-    require_once('../php_sql/db_connect.php');
+    require_once('php_sql/db_connect.php');
     $sql = "SELECT ingredient_id, name, image_url FROM ingredients";
     $query = $db->prepare($sql);
     $query->execute();
