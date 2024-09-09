@@ -12,7 +12,7 @@
 
 <body>
     <a href="../index.php">Accueil</a>
-    <a href="#" class="filter-link" data-filter="">Toutes nos pizzas</a>
+    <a href="#" class="filter-link active-filter" data-filter="">Toutes nos pizzas</a>
     <a href="#" class="filter-link" data-filter="is_classic">Les classiques</a>
     <a href="#" class="filter-link" data-filter="is_new">Les nouveautés</a>
     <a href="#" class="filter-link" data-filter="sells_count">Les + demandées</a>
