@@ -42,12 +42,40 @@
         <!-- a changer chaque jours en php pour afficher une pizza différente -->
 
 
-
+        <!-- grid notre carte -->
         <h2 class="title-color">Notre carte</h2>
-        <div>
-            <p class="a-venir">GRID A VENIR</p>
+        <div class="container-grid">
+            <div class="item item1">
+                <a href="">
+                    <img src="../img/grid/les_classiques.png" alt="image de pizza">
+                    <span class="btn-grid">Les classiques</span>
+                </a>
+            </div>
+            <div class="item item2">
+                <a href="">
+                    <img src="../img/grid/toutes_les_pizzas.png" alt="image de pizza">
+                    <span class="btn-grid">toutes les pizzas</span>
+                </a>
+            </div>
+            <div class="item item3">
+                <a href="">
+                    <img src="../img/grid/sur_mesure.png" alt="image de pizza">
+                    <span class="btn-grid">sur mesure</span>
+                </a>
+            </div>
+            <div class="item item4">
+                <a href="">
+                    <img src="../img/grid/les_plus_demandés.png" alt="image de pizza">
+                    <span class="btn-grid">les plus demandés</span>
+                </a>
+            </div>
+            <div class="item item5">
+                <a href="">
+                    <img src="../img/grid/nos_offres_spéciales.png" alt="image de pizza">
+                    <span class="btn-grid">Nos offres spéciales</span>
+                </a>
+            </div>
         </div>
-
     </main>
 
     <!-- bandeau fixed -->
@@ -85,9 +113,9 @@
             la pizza rencontre la tradition familiale !</p>
 
         <!-- histoire partie 1 -->
-        <figure class="container-notre-histoire">
-            <img src="../img/notre_histoire.png" alt="pizza qui sort du four">
-            <figcaption class="box-color notre-histoire-description">
+        <figure class="container-notre-histoire container-notre-histoire-desktop">
+            <img class="notre-histoire-img-desktop" src="../img/notre_histoire.png" alt="pizza qui sort du four">
+            <figcaption class="box-color notre-histoire-description notre-histoire-description-desktop">
                 <p class="title-color notre-histoire-title-card">Plus Qu'une Simple Pizzeria</p>
                 <p class="text-color">Tout a commencé il y a 5 ans, lorsque <span class="important-word">gino
                         chorizo</span> a ouvert
@@ -103,7 +131,7 @@
         </figure>
 
         <!-- histoire partie 2 -->
-        <figure class="container-notre-histoire">
+        <figure class="container-notre-histoire container-notre-histoire-partie-2-desktop">
             <div class="container-double-img">
                 <img class="une-passion-pour-la-qualiter-img-1" src="../img/une_passion_pour_la_qualiter.png"
                     alt="fabrication d'une pizza">
@@ -123,9 +151,9 @@
         </figure>
 
         <!-- histoire partie 3 -->
-        <figure class="container-notre-histoire">
+        <figure class="container-notre-histoire container-notre-histoire-desktop">
             <img src="../img/une_histoire_de_famille.png" alt="partage_de_pizza">
-            <figcaption class="box-color notre-histoire-description">
+            <figcaption class="box-color notre-histoire-description notre-histoire-description-desktop">
                 <p class="notre-histoire-title-card title-color">Une Histoire de Famille</p>
                 <p class="text-color">Nous sommes fiers d'être une entreprise familiale, où chaque membre de
                     l'équipe fait partie de

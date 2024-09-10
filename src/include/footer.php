@@ -11,15 +11,15 @@
             <div class="container-footer-logo">
                 <p class="footer-title">Retrouvez-nous sur</p>
                 <div class="container-footer-logo-img">
-                    <a href="https://www.instagram.com">
+                    <a href="https://www.instagram.com" target="_blank">
                         <img class="footer-logo-animation footer-logo-reseaux" src="../img/logo_instagram.png"
                             alt="logo instagram">
                     </a>
-                    <a href="https://twitter.com">
+                    <a href="https://twitter.com" target="_blank">
                         <img class="footer-logo-animation footer-logo-reseaux" src="../img/logo_twitter.png"
                             alt="logo twitter">
                     </a>
-                    <a href="https://www.facebook.com">
+                    <a href="https://www.facebook.com" target="_blank">
                         <img class="footer-logo-animation footer-logo-reseaux" src="../img/logo_facebook.png"
                             alt="logo facebook">
                     </a>

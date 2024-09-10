@@ -144,6 +144,9 @@ h5 {
     text-align: center;
 }
 
+/* grid carte */
+
+
 /* section notre histoire */
 
 .notre-histoire-title {
@@ -157,7 +160,7 @@ h5 {
 
 .sous-titre {
     text-align: center;
-    width: 90%;
+    width: 80%;
     margin: auto;
 }
 
@@ -272,8 +275,8 @@ h4 {
 form {
     margin-top: 5%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 0% 10%;
 }
 
@@ -288,16 +291,31 @@ form {
 
 .form-input {
     font-family: inherit;
-    width: 50%;
+    width: 100%;
     border: 0;
     border-bottom: 2px solid var(--title-color);
     outline: 0;
-    width: 100%;
     color: var(--color-white);
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
     color: var(--text-color);
+}
+
+form>button {
+    width: 50%;
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--title-color);
+    color: var(--box-color);
+    border: none;
+    border-radius: 12px;
+    font-family: "itim-regular";
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-input::placeholder {
@@ -328,23 +346,6 @@ form {
 .form-input:focus~.form-label {
     top: 0;
     color: var(--text-color);
-}
-
-form>button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40PX;
-    width: 100px;
-    padding: 2%;
-    background: var(--title-color);
-    color: var(--box-color);
-    border: transparent;
-    border-radius: 12px;
-    font-family: "itim-regular";
-    cursor: pointer;
-    transition: 0.1s ease-in;
-    font-weight: bold;
 }
 
 /* section newsletter */
@@ -399,12 +400,21 @@ h5 {
     h4,
     h5 {
         font-size: var(--desktop-size-xl);
+        text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .h1-sous-titre {
+        font-size: var(--desktop-size-small);
     }
 
     /* pizza of the day */
     .container-pizza-of-the-day {
         display: flex;
         width: 60%;
+    }
+
+    .pizza-name {
+        font-size: var(--desktop-size-medium);
     }
 
     .container-pizza-of-the-day-text {
@@ -414,6 +424,7 @@ h5 {
         padding: 1%;
         margin-top: -20px;
         margin-bottom: -20px;
+        font-size: var(--desktop-size-small);
     }
 
     .img-pizza-of-the-day {
@@ -430,10 +441,121 @@ h5 {
         margin-top: 50px;
     }
 
+    /* notre histoire */
+    .sous-titre {
+        font-size: var(--desktop-size-small);
+    }
+
+    /* partie 1 et 3 */
+    .container-notre-histoire-desktop {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+    }
+
+    .container-notre-histoire-desktop>img {
+        width: 50%;
+        height: 450px;
+        order: 1;
+        position: relative;
+        z-index: -1;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .notre-histoire-description-desktop {
+        width: 50%;
+        height: auto;
+        order: 2;
+        margin: -30px 0px -30px -10px;
+        border-radius: 12px;
+        font-size: var(--desktop-size-small);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+        .notre-histoire-title-card {
+            margin-bottom: 50px;
+            font-size: var(--desktop-size-medium);
+        }
+    }
+
+    /* partie 2 */
+    .container-notre-histoire-partie-2-desktop {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+    }
+
+    .notre-histoire-description-2 {
+        width: 50%;
+        order: 1;
+        border-radius: 12px;
+        margin: -30px -10px -30px 0px;
+        position: relative;
+        z-index: 2;
+        font-size: var(--desktop-size-small);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+        .notre-histoire-title-card {
+            margin-bottom: 50px;
+            font-size: var(--desktop-size-medium);
+        }
+    }
+
+    .container-double-img {
+        width: 50%;
+        order: 2;
+        height: 450px;
+        border-radius: 12px;
+        object-fit: cover;
+        gap: 10px;
+
+        .une-passion-pour-la-qualiter-img-1 {
+            border-radius: 0px 12px 12px 0px;
+        }
+
+        .une-passion-pour-la-qualiter-img-2 {
+            border-radius: 12px;
+        }
+
+    }
+
+    /* avis */
+    .container-avis {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+        align-items: center;
+        text-align: center;
+        margin-top: -80px;
+
+        .avis {
+            width: 40%;
+        }
+
+        .container-name-avis {
+            text-align: center;
+            justify-content: space-between;
+            width: 200px;
+            margin: auto;
+        }
+    }
+
+
     /* newsletter */
+    .container-newsletter>p {
+        margin-bottom: 35px;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        flex-direction: row;
+        width: 80%;
+    }
+
     form>button {
-        height: 40PX;
-        width: 100px;
-        padding: 1%;
+        width: 20%;
     }
 }
