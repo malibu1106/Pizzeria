@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,6 +19,7 @@
 
 <body>
     <!-- <?php include 'tests/liens_tests.html';?> -->
+
 
     <header>
         <?php include_once './include/nav.php'; ?>

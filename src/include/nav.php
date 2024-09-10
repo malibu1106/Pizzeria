@@ -8,8 +8,18 @@
                 <li>
                     <a href="../carte.php">Pizzas</a>
                 </li>
+                <?php
+                if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== 1){
+                echo'
                 <li>
                     <a href="../connexion.php">Connexion</a>
-                </li>
+                </li>';}
+                else{
+                    echo'
+                    <li>
+                        <a href="../php_sql/logout.php">Déconnexion</a>
+                    </li>';
+                }
+                ?>
             </ul>
         </nav>
