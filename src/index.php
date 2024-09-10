@@ -28,7 +28,7 @@ session_start();
     <header>
         <?php include_once './include/nav.php'; ?>
 
-        <p class="a-venir">VIDEO A VENIR</p>
+        <video autoplay loop muted src="../img/background.mp4"></video>
     </header>
 
     <main>

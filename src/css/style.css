@@ -99,6 +99,19 @@ h5 {
     margin-top: -10px;
 }
 
+/* video header */
+video {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+}
+
+main {
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+    margin-top: 100vh;
+}
+
 /* bandeau fixed */
 .container-bandeau {
     /* display: flex; pour display flex depuis le JS */
