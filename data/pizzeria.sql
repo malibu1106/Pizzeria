@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 06 sep. 2024 à 13:31
--- Version du serveur : 8.0.37
+-- Généré le : lun. 09 sep. 2024 à 13:05
+-- Version du serveur : 8.0.39
 -- Version de PHP : 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -128,6 +128,7 @@ CREATE TABLE `dishes` (
   `price` decimal(5,2) NOT NULL,
   `type` varchar(255) NOT NULL,
   `is_new` tinyint(1) NOT NULL,
+  `is_classic` tinyint(1) NOT NULL DEFAULT '0',
   `is_discounted` float(3,2) NOT NULL,
   `sells_count` int NOT NULL DEFAULT '0',
   `pate_id` int DEFAULT NULL,
@@ -139,43 +140,43 @@ CREATE TABLE `dishes` (
 -- Déchargement des données de la table `dishes`
 --
 
-INSERT INTO `dishes` (`dish_id`, `name`, `description`, `image_url`, `price`, `type`, `is_new`, `is_discounted`, `sells_count`, `pate_id`, `base_id`, `size_id`) VALUES
-(76, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 8.00, 'pizza', 1, 0.04, 0, 1, 1, 1),
-(77, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 9.00, 'pizza', 1, 0.04, 0, 2, 1, 1),
-(78, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 10.50, 'pizza', 1, 0.04, 0, 3, 1, 1),
-(79, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 10.00, 'pizza', 1, 0.04, 0, 1, 1, 2),
-(80, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 11.00, 'pizza', 1, 0.04, 0, 2, 1, 2),
-(81, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 12.50, 'pizza', 1, 0.04, 0, 3, 1, 2),
-(82, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 11.00, 'pizza', 1, 0.04, 0, 1, 1, 3),
-(83, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 12.00, 'pizza', 1, 0.04, 0, 2, 1, 3),
-(84, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 13.50, 'pizza', 1, 0.04, 0, 3, 1, 3),
-(148, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 7.00, 'pizza', 1, 0.00, 0, 1, 1, 1),
-(149, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 8.00, 'pizza', 1, 0.00, 0, 2, 1, 1),
-(150, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 9.50, 'pizza', 1, 0.00, 0, 3, 1, 1),
-(151, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 9.00, 'pizza', 1, 0.00, 0, 1, 1, 2),
-(152, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 10.00, 'pizza', 1, 0.00, 0, 2, 1, 2),
-(153, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 11.50, 'pizza', 1, 0.00, 0, 3, 1, 2),
-(154, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 10.00, 'pizza', 1, 0.00, 0, 1, 1, 3),
-(155, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 11.00, 'pizza', 1, 0.00, 0, 2, 1, 3),
-(156, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 12.50, 'pizza', 1, 0.00, 0, 3, 1, 3),
-(157, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 9.20, 'pizza', 1, 0.00, 0, 1, 3, 1),
-(158, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 10.20, 'pizza', 1, 0.00, 0, 2, 3, 1),
-(159, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 11.70, 'pizza', 1, 0.00, 0, 3, 3, 1),
-(160, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 11.20, 'pizza', 1, 0.00, 0, 1, 3, 2),
-(161, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 12.20, 'pizza', 1, 0.00, 0, 2, 3, 2),
-(162, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 13.70, 'pizza', 1, 0.00, 0, 3, 3, 2),
-(163, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 12.20, 'pizza', 1, 0.00, 0, 1, 3, 3),
-(164, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 13.20, 'pizza', 1, 0.00, 0, 2, 3, 3),
-(165, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 14.70, 'pizza', 1, 0.00, 0, 3, 3, 3),
-(184, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 8.00, 'pizza', 0, 0.00, 0, 1, 1, 1),
-(185, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 9.00, 'pizza', 0, 0.00, 0, 2, 1, 1),
-(186, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 10.50, 'pizza', 0, 0.00, 0, 3, 1, 1),
-(187, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 10.00, 'pizza', 0, 0.00, 0, 1, 1, 2),
-(188, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 11.00, 'pizza', 0, 0.00, 0, 2, 1, 2),
-(189, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 12.50, 'pizza', 0, 0.00, 0, 3, 1, 2),
-(190, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 11.00, 'pizza', 0, 0.00, 0, 1, 1, 3),
-(191, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 12.00, 'pizza', 0, 0.00, 0, 2, 1, 3),
-(192, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 13.50, 'pizza', 0, 0.00, 0, 3, 1, 3);
+INSERT INTO `dishes` (`dish_id`, `name`, `description`, `image_url`, `price`, `type`, `is_new`, `is_classic`, `is_discounted`, `sells_count`, `pate_id`, `base_id`, `size_id`) VALUES
+(76, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 8.00, 'pizza', 1, 1, 0.04, 0, 1, 1, 1),
+(77, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 9.00, 'pizza', 1, 1, 0.04, 0, 2, 1, 1),
+(78, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 10.50, 'pizza', 1, 1, 0.04, 0, 3, 1, 1),
+(79, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 10.00, 'pizza', 1, 1, 0.04, 0, 1, 1, 2),
+(80, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 11.00, 'pizza', 1, 1, 0.04, 0, 2, 1, 2),
+(81, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 12.50, 'pizza', 1, 1, 0.04, 0, 3, 1, 2),
+(82, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 11.00, 'pizza', 1, 1, 0.04, 0, 1, 1, 3),
+(83, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 12.00, 'pizza', 1, 1, 0.04, 0, 2, 1, 3),
+(84, 'Regina', 'la pizza reine', 'img/products/Pizza Regina.png', 13.50, 'pizza', 1, 1, 0.04, 0, 3, 1, 3),
+(148, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 7.00, 'pizza', 1, 0, 0.00, 0, 1, 1, 1),
+(149, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 8.00, 'pizza', 1, 0, 0.00, 0, 2, 1, 1),
+(150, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 9.50, 'pizza', 1, 0, 0.00, 0, 3, 1, 1),
+(151, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 9.00, 'pizza', 1, 0, 0.00, 3, 1, 1, 2),
+(152, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 10.00, 'pizza', 1, 0, 0.00, 0, 2, 1, 2),
+(153, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 11.50, 'pizza', 1, 0, 0.00, 0, 3, 1, 2),
+(154, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 10.00, 'pizza', 1, 0, 0.00, 0, 1, 1, 3),
+(155, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 11.00, 'pizza', 1, 0, 0.00, 1, 2, 1, 3),
+(156, 'Margarita', 'blablabla', 'img/products/Pizza Margarita.png', 12.50, 'pizza', 1, 0, 0.00, 0, 3, 1, 3),
+(157, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 9.20, 'pizza', 1, 0, 0.00, 0, 1, 3, 1),
+(158, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 10.20, 'pizza', 1, 0, 0.00, 0, 2, 3, 1),
+(159, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 11.70, 'pizza', 1, 0, 0.00, 0, 3, 3, 1),
+(160, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 11.20, 'pizza', 1, 0, 0.00, 0, 1, 3, 2),
+(161, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 12.20, 'pizza', 1, 0, 0.00, 0, 2, 3, 2),
+(162, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 13.70, 'pizza', 1, 0, 0.00, 0, 3, 3, 2),
+(163, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 12.20, 'pizza', 1, 0, 0.00, 0, 1, 3, 3),
+(164, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 13.20, 'pizza', 1, 0, 0.00, 0, 2, 3, 3),
+(165, 'Salmon', 'ciboulette cacahuette citron', 'img/products/Pizza Salmon.jpg', 14.70, 'pizza', 1, 0, 0.00, 2, 3, 3, 3),
+(184, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 8.00, 'pizza', 0, 0, 0.00, 0, 1, 1, 1),
+(185, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 9.00, 'pizza', 0, 0, 0.00, 0, 2, 1, 1),
+(186, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 10.50, 'pizza', 0, 0, 0.00, 0, 3, 1, 1),
+(187, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 10.00, 'pizza', 0, 0, 0.00, 0, 1, 1, 2),
+(188, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 11.00, 'pizza', 0, 0, 0.00, 0, 2, 1, 2),
+(189, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 12.50, 'pizza', 0, 0, 0.00, 0, 3, 1, 2),
+(190, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 11.00, 'pizza', 0, 0, 0.00, 0, 1, 1, 3),
+(191, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 12.00, 'pizza', 0, 0, 0.00, 0, 2, 1, 3),
+(192, 'Quatre fromages', 'Pizza aux quatres délicieux fromtons', 'img/products/Pizza Quatre fromages.jpg', 13.50, 'pizza', 0, 0, 0.00, 0, 3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ INSERT INTO `dish_ingredients` (`dish_ingredient_id`, `dish_name`, `ingredient_i
 (188, 'Salmon', 8),
 (189, 'Salmon', 11),
 (190, 'Salmon', 19),
-(199, 'Quatre fromages', 5),
+(199, 'Quatre fromages', 6),
 (200, 'Quatre fromages', 15),
 (201, 'Quatre fromages', 16),
 (202, 'Quatre fromages', 25);
@@ -393,6 +394,7 @@ INSERT INTO `tickets` (`ticket_id`, `user_id`, `last_name`, `first_name`, `email
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
+  `role` varchar(255) NOT NULL DEFAULT 'user',
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -407,9 +409,10 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `address`, `phone`, `date_signup`, `fidelity_points`) VALUES
-(1, 'jean', 'luc', 'malibu1106@gmail.com', 'fefefefe', NULL, '0645454', '2024-09-03 07:46:38', 0),
-(2, 'Françoise', 'Chirac', 'fchiriac@gmail.com', '$2y$10$7zhfoNB.nyyFm/idZCs02eluQ4qNZulcL9sdR2Fy2iJOf/Hf6eCLi', NULL, NULL, '2024-09-03 08:18:57', 0);
+INSERT INTO `users` (`user_id`, `role`, `first_name`, `last_name`, `email`, `password`, `address`, `phone`, `date_signup`, `fidelity_points`) VALUES
+(1, 'user', 'jean', 'luc', 'malibu1106@gmail.com', 'fefefefe', NULL, '0645454', '2024-09-03 07:46:38', 0),
+(2, 'user', 'Françoise', 'Chirac', 'fchiriac@gmail.com', '$2y$10$7zhfoNB.nyyFm/idZCs02eluQ4qNZulcL9sdR2Fy2iJOf/Hf6eCLi', NULL, NULL, '2024-09-03 08:18:57', 0),
+(3, 'user', 'gfgfgf', 'gfdgdf', 'gfgf@gfgf.ce', '$2y$10$IG/vH1hy7Y0zKUkOk4Im.uTdNghKx7csaOaE1.kMDwW77lDe3s24e', NULL, NULL, '2024-09-09 12:55:42', 0);
 
 --
 -- Index pour les tables déchargées
@@ -585,7 +588,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

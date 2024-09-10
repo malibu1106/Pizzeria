@@ -52,3 +52,28 @@ body {
     background-color: var(--background-color);
     font-family: "alata-regular";
 }
+
+form{
+    display:flex;
+    flex-direction: column;
+    max-width: 400px;
+    /* outline:solid white 2px;     */
+}
+
+input{
+    margin:16px;
+    height:4vh;
+}
+
+label{
+    display:none;
+}
+
+/* Cache initialement le formulaire d'inscription */
+.signin-container {
+    display: none;
+}
+/* Cache le bouton de connexion par défaut */
+#show-login-btn {
+    display: none;
+}

@@ -16,13 +16,9 @@
 
     </header>
     <h1>Carte</h1>
-    <a href="carte.php">Toutes nos pizzas</a>
-    <a href="carte.php?selected_global_filter=is_classic">Les classiques</a>
-    <a href="carte.php?selected_global_filter=is_new">Les nouveautés</a>
-    <a href="carte.php?selected_global_filter=sells_count">Les + demandées</a>
-    ICI VOIR POUR :
-    IF global filter is set : requete sql >
-    ELSE > filtered_search_pizzas (puisque toutes les pizzas affichées par defaut)
+    <?php include 'tests/test_filtered_search.php'?>
+    
+
 
 </body>
 
