@@ -21,7 +21,27 @@
 
 }
 
-/* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+
+.container-bandeau {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 100vw;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    /* Cacher l'élément tout en permettant la transition */
+    transition: opacity 1s ease, visibility 0s linear 1s;
+    /* Délai sur la visibilité pour qu'elle soit modifiée après la transition d'opacité */
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    /* Rendre visible l'élément */
+    transition: opacity 1s ease, visibility 0s;
+    /* Annuler le délai de visibilité */
+}
 
 .a-venir {
     text-align: center;
@@ -81,7 +101,7 @@ h5 {
 
 /* bandeau fixed */
 .container-bandeau {
-    display: flex;
+    /* display: flex; pour display flex depuis le JS */
     justify-content: space-around;
     height: 50px;
     align-items: center;
@@ -639,6 +659,8 @@ h5 {
     .item5::before {
         background-image: url("../img/grid/nos_offres_spéciales.png");
     }
+
+
 
 
 

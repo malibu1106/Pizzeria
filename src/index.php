@@ -78,7 +78,7 @@ session_start();
 
     <!-- bandeau fixed -->
     <!-- A FAIRE A LA FIN -->
-    <div class="container-bandeau box-color">
+    <div class="container-bandeau box-color" id="bandeau">
         <figure>
             <a class="" href="">
                 <img class="bandeau-logo" src="../img/logo_livraison.png" alt="logo livraison">
