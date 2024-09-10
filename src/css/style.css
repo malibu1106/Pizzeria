@@ -534,6 +534,7 @@ h5 {
     }
 
     .item {
+        overflow: hidden;
         margin-bottom: 0px;
         border-radius: 12px;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 20px 30px, rgba(0, 0, 0, 0.12) 0px -8px 20px, rgba(0, 0, 0, 0.12) 0px 2px 4px, rgba(0, 0, 0, 0.17) 0px 8px 10px, rgba(0, 0, 0, 0.09) 0px -2px 4px;
@@ -598,6 +599,48 @@ h5 {
             height: 160px;
         }
     }
+
+    /*grid hover */
+
+    .item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: center;
+        transition: transform 1s ease;
+        z-index: 1;
+
+    }
+
+    .item:hover::before {
+        transform: scale(1.08);
+    }
+
+    .item1::before {
+        background-image: url("../img/grid/toutes_les_pizzas.png");
+    }
+
+    .item2::before {
+        background-image: url("../img/grid/les_classiques.png");
+    }
+
+    .item3::before {
+        background-image: url("../img/grid/sur_mesure.png");
+    }
+
+    .item4::before {
+        background-image: url("../img/grid/les_plus_demandés.png");
+    }
+
+    .item5::before {
+        background-image: url("../img/grid/nos_offres_spéciales.png");
+    }
+
+
 
     /* notre histoire */
     .sous-titre {
