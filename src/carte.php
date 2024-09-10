@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
     </header>
     <h1>Carte</h1>
     <?php include 'tests/test_filtered_search.php'?>
-    
+
 
 
 </body>

@@ -1,4 +1,7 @@
 <?php session_start();
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === 1){
+    header('Location: ../index.php'); // REDIRECTION, CHECK URL PLUS TARD
+}
 if(!empty($_SESSION['info_message'])){
     // echo $_SESSION['info_message'];
 } ?>

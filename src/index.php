@@ -1,6 +1,9 @@
 <?php
 session_start();
 ?>
+<!-- <pre>
+<?php print_r($_SESSION);?>
+</pre> -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,6 +17,7 @@ session_start();
     <link rel="stylesheet" href="css/include_css/nav.css">
     <link rel="stylesheet" href="css/include_css/footer.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>El Chorizo</title>
 </head>
 
@@ -179,74 +183,70 @@ session_start();
         <div class="container-avis">
 
 
-            <!-- foreach pour afficher un maximum de 4 commentaire -->
+            <?php
 
-            <!-- <div class="avis">
-                <div class="container-name-avis">
-                    <p class="title-color">NOM DE LA PERSONNE</p>
-                    <p class="star-color">NOMBRE D'ETOILES &#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                </div>
-                <p class="text-color">COMMENTAIRE</p>
-            </div> -->
+require_once('php_sql/db_connect.php');
+$sql = "SELECT is_anonyme, first_name, last_name, score, commentary FROM reviews ORDER BY date_creation DESC LIMIT 4";
+$query = $db->prepare($sql);
+$query->execute();
+$reviews = $query->fetchAll(PDO::FETCH_ASSOC);
 
+foreach ($reviews as $review){
+    echo '
+    <div class="avis">
+        <div class="container-name-avis">
+            <p class="title-color">';
+            echo $review['is_anonyme'] ? 'Anonyme' : $review['first_name'].' '.$review['last_name'];
+            echo '</p>
+            <p class="star-color">';
+            
+                // Nombre d'étoiles pleines basé sur le score
+                $fullStars = $review['score']; // Nombre d'étoiles pleines
+                $emptyStars = 5 - $fullStars;  // Nombre d'étoiles vides
 
+                // Affichage des étoiles pleines
+                for ($i = 0; $i < $fullStars; $i++) {
+                    echo '<i class="fas fa-star"></i>'; // Étoile pleine
+                }
 
-            <!-- a remplacer par des commentaire récupérer en bdd, dois etre supprimer une fois cela fait -->
-            <div class="avis">
-                <div class="container-name-avis">
-                    <p class="title-color">Jean Dupont</p>
-                    <p class="star-color">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                </div>
-                <p class="text-color">Excellent restaurant ! La pizza était délicieuse, et le service irréprochable. Je
-                    recommande vivement
-                    !</p>
-            </div>
-            <div class="avis">
-                <div class="container-name-avis">
-                    <p class="title-color">Marie Leblanc</p>
-                    <p class="star-color">&#9733;&#9733;&#9733;&#9733;</p>
-                </div>
-                <p class="text-color">Très bon restaurant, la pizza était savoureuse, mais le service un peu lent. Cela
-                    reste une bonne
-                    expérience !</p>
-            </div>
-            <div class="avis">
-                <div class="container-name-avis">
-                    <p class="title-color">Paul Martin</p>
-                    <p class="star-color">&#9733;&#9733;&#9733;</p>
-                </div>
-                <p class="text-color">La pizza était correcte, mais je m'attendais à mieux. Le cadre est agréable, mais
-                    le rapport
-                    qualité-prix est moyen.</p>
-            </div>
-            <div class="avis">
-                <div class="container-name-avis">
-                    <p class="title-color">Claire Durand</p>
-                    <p class="star-color">&#9733;&#9733;</p>
-                </div>
-                <p class="text-color">Décevant. La pâte de la pizza était trop cuite et le service manquait d'attention.
-                    Je ne reviendrai
-                    pas.</p>
-            </div>
-            <!-- a remplacer par des commentaire récupérer en bdd, dois etre supprimer une fois cela fait -->
+                // Affichage des étoiles vides
+                for ($i = 0; $i < $emptyStars; $i++) {
+                    echo '<i class="far fa-star"></i>'; // Étoile vide
+                }
+
+            echo'</p>
+        </div>
+        <p class="text-color">'.$review['commentary'].'!</p>
+    </div>';
+}
+        ?>
+
         </div>
 
 
 
-        <div class="container-newsletter">
+        <div class="container-newsletter" id="newsletter">
             <h5 class="title-color">Newsletter</h5>
             <p class="text-color">Abonnez-vous à notre newsletter pour découvrir en avant-première nos
                 nouvelles pizzas et profiter d'offres
                 exclusives. Ne manquez aucune de nos délicieuses créations chez <span class="important-word">el
                     chorizo</span> !</p>
         </div>
-        <form action="#" method="post">
+        <form action="php_sql/newsletter_subscribe.php" method="post">
             <div class="form-group">
-                <input class="form-input" type="email" name="email" placeholder=" " id="Email" />
-                <label class="form-label" for="Email">Email</label>
+                <input class="form-input" type="email" name="email" placeholder=" " id="Email" <?php 
+                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === 1){
+                    echo 'value="'.$_SESSION['email'].'"';
+                 }
+                ?> />
+                <label class="form-label" for="email">Email</label>
             </div>
             <button type="submit">S'inscrire</button>
         </form>
+
+        <p class="sous-titre text-color">
+            <?php if(!empty($_SESSION['info_message'])){ echo $_SESSION['info_message']; } ?>
+        </p>
     </section>
 
     <?php include_once './include/footer.php'; ?>

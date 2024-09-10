@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email']) && !empty($_
     require_once("db_connect.php");
 
     // REQUETE AVEC CE QU'IL NOUS FAUT A STOCKER EN $_SESSION SI BESOIN 
-    $sql = "SELECT user_id, first_name, last_name, password, role FROM users WHERE email = :email";
+    $sql = "SELECT * FROM users WHERE email = :email";
 
     // PREPARATION DE LA REQUETE
     $query = $db->prepare($sql);    
@@ -34,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email']) && !empty($_
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['email'] = $user['email'];
             header('Location: ../index.php');} // REDIRECTION, CHECK URL PLUS TARD
 
     // SI LE MOT DE PASSE EST INCORRECT
