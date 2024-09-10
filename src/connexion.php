@@ -30,8 +30,14 @@ if(!empty($_SESSION['info_message'])){
             <label for="email">Email :</label>
             <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
 
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+            <div class="password-container">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                <span class="toggle-password" onclick="togglePassword('password', this)">
+                    <img class="show-hide-password" src="img/icons/show_password.png"
+                        alt="Afficher/Masquer mot de passe">
+                </span>
+            </div>
 
             <input type="submit" value="Se connecter">
 
@@ -54,11 +60,25 @@ if(!empty($_SESSION['info_message'])){
             <label for="si_email">Email :</label>
             <input type="email" id="si_email" name="si_email" placeholder="Entrez votre email" required>
 
-            <label for="si_password">Mot de passe :</label>
-            <input type="password" id="si_password" name="si_password" placeholder="Entrez votre mot de passe" required>
+            <div class="password-container">
+                <label for="si_password">Mot de passe :</label>
+                <input type="password" id="si_password" name="si_password" placeholder="Entrez votre mot de passe"
+                    required>
+                <span class="toggle-password" onclick="togglePassword('si_password', this)">
+                    <img class="show-hide-password" src="img/icons/show_password.png"
+                        alt="Afficher/Masquer mot de passe">
+                </span>
+            </div>
 
-            <label for="si_retyped_password">Confirmez le mot de passe :</label>
-            <input type="password" id="si_retyped_password" name="si_retyped_password" placeholder="Confirmez votre mot de passe" required>
+            <div class="password-container">
+                <label for="si_retyped_password">Confirmez le mot de passe :</label>
+                <input type="password" id="si_retyped_password" name="si_retyped_password"
+                    placeholder="Confirmez votre mot de passe" required>
+                <span class="toggle-password" onclick="togglePassword('si_retyped_password', this)">
+                    <img class="show-hide-password" src="img/icons/show_password.png"
+                        alt="Afficher/Masquer mot de passe">
+                </span>
+            </div>
 
             <div id="error-message" style="color:red;"></div> <!-- Zone d'erreurs -->
 
