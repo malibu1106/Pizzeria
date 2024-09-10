@@ -225,9 +225,9 @@ foreach ($reviews as $review){
         <form action="php_sql/newsletter_subscribe.php" method="post">
             <div class="form-group">
                 <input class="form-input" type="email" name="email" placeholder=" " id="Email" <?php 
-                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === 1){
+                    if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === 1){
                     echo 'value="'.$_SESSION['email'].'"';
-                 }
+                    }
                 ?> />
                 <label class="form-label" for="email">Email</label>
             </div>
