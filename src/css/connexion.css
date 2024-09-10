@@ -53,27 +53,51 @@ body {
     font-family: "alata-regular";
 }
 
-form{
-    display:flex;
+form {
+    display: flex;
     flex-direction: column;
-    max-width: 400px;
-    /* outline:solid white 2px;     */
+    max-width: 500px;
+    outline: solid white 2px;
 }
 
-input{
-    margin:16px;
-    height:4vh;
+input {
+    margin: 1vw 4vh;
+    height: 4vh;
 }
 
-label{
-    display:none;
+label {
+    display: none;
 }
 
 /* Cache initialement le formulaire d'inscription */
 .signin-container {
     display: none;
 }
+
 /* Cache le bouton de connexion par défaut */
 #show-login-btn {
     display: none;
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+}
+
+.password-container input {
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    height: 100%;
+    right: calc(1vw + 25px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.toggle-password img {
+    height: 25px;
+    cursor: pointer;
 }

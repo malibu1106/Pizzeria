@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('si_password');
     const retypedPasswordInput = document.getElementById('si_retyped_password');
     const errorMessage = document.getElementById('error-message');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     retypedPasswordInput.addEventListener('input', updatePasswordFeedback);
 
     // Gestion de la soumission du formulaire
-    signupForm.addEventListener('submit', function(event) {
+    signupForm.addEventListener('submit', function (event) {
         const password = passwordInput.value;
         const retypedPassword = retypedPasswordInput.value;
         const validation = validatePassword(password);
@@ -61,17 +61,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('login-form');
     const signinForm = document.getElementById('signin-form');
 
-    showSigninBtn.addEventListener('click', function() {
+    showSigninBtn.addEventListener('click', function () {
         loginForm.style.display = 'none';
         signinForm.style.display = 'block';
         showSigninBtn.style.display = 'none';
         showLoginBtn.style.display = 'inline-block';
     });
 
-    showLoginBtn.addEventListener('click', function() {
+    showLoginBtn.addEventListener('click', function () {
         signinForm.style.display = 'none';
         loginForm.style.display = 'block';
         showSigninBtn.style.display = 'inline-block';
         showLoginBtn.style.display = 'none';
     });
 });
+
+
+function togglePassword(inputId, eyeIcon) {
+    const passwordInput = document.getElementById(inputId);
+    const img = eyeIcon.querySelector('img');
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        img.src = "img/icons/hide_password.png";  // Changer l'icône pour masquer
+        img.alt = "Masquer mot de passe";
+    } else {
+        passwordInput.type = "password";
+        img.src = "img/icons/show_password.png";  // Changer l'icône pour afficher
+        img.alt = "Afficher mot de passe";
+    }
+}
