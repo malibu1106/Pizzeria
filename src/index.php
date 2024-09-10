@@ -46,34 +46,24 @@
         <h2 class="title-color">Notre carte</h2>
         <div class="container-grid">
             <div class="item item1">
-                <a href="">
-                    <img src="../img/grid/les_classiques.png" alt="image de pizza">
-                    <span class="btn-grid">Les classiques</span>
-                </a>
+                <img src="../img/grid/les_classiques.png" alt="image de pizza">
+                <a class="btn-grid" href="">Les classiques</a>
             </div>
             <div class="item item2">
-                <a href="">
-                    <img src="../img/grid/toutes_les_pizzas.png" alt="image de pizza">
-                    <span class="btn-grid">toutes les pizzas</span>
-                </a>
+                <img src="../img/grid/toutes_les_pizzas.png" alt="image de pizza">
+                <a class="btn-grid" href="">toutes les pizzas</a>
             </div>
             <div class="item item3">
-                <a href="">
-                    <img src="../img/grid/sur_mesure.png" alt="image de pizza">
-                    <span class="btn-grid">sur mesure</span>
-                </a>
+                <img src="../img/grid/sur_mesure.png" alt="image de pizza">
+                <a class="btn-grid" href="">sur mesure</a>
             </div>
             <div class="item item4">
-                <a href="">
-                    <img src="../img/grid/les_plus_demandés.png" alt="image de pizza">
-                    <span class="btn-grid">les plus demandés</span>
-                </a>
+                <img src="../img/grid/les_plus_demandés.png" alt="image de pizza">
+                <a class="btn-grid" href="">les plus demandés</a>
             </div>
             <div class="item item5">
-                <a href="">
-                    <img src="../img/grid/nos_offres_spéciales.png" alt="image de pizza">
-                    <span class="btn-grid">Nos offres spéciales</span>
-                </a>
+                <img src="../img/grid/nos_offres_spéciales.png" alt="image de pizza">
+                <a class="btn-grid" href="">Nos offres spéciales</a>
             </div>
         </div>
     </main>
