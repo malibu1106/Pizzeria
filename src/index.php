@@ -28,7 +28,7 @@ session_start();
     <header>
         <?php include_once './include/nav.php'; ?>
 
-        <video autoplay loop muted src="../img/background.mp4"></video>
+        <p class="a-venir">VIDEO A VENIR</p>
     </header>
 
     <main>
@@ -55,11 +55,11 @@ session_start();
         <div class="container-grid">
             <div class="item item1">
                 <img src="../img/grid/les_classiques.png" alt="image de pizza">
-                <a class="btn-grid" href="">Les classiques</a>
+                <a class="btn-grid" href="carte.php?filter=classic">Les classiques</a>
             </div>
             <div class="item item2">
                 <img src="../img/grid/toutes_les_pizzas.png" alt="image de pizza">
-                <a class="btn-grid" href="">toutes les pizzas</a>
+                <a class="btn-grid" href="carte.php?filter=all">toutes les pizzas</a>
             </div>
             <div class="item item3">
                 <img src="../img/grid/sur_mesure.png" alt="image de pizza">
@@ -67,11 +67,11 @@ session_start();
             </div>
             <div class="item item4">
                 <img src="../img/grid/les_plus_demandés.png" alt="image de pizza">
-                <a class="btn-grid" href="">les plus demandés</a>
+                <a class="btn-grid" href="carte.php?filter=sales_count">les plus demandées</a>
             </div>
             <div class="item item5">
                 <img src="../img/grid/nos_offres_spéciales.png" alt="image de pizza">
-                <a class="btn-grid" href="">Nos offres spéciales</a>
+                <a class="btn-grid" href="carte.php?filter=new">Nos nouveautés</a>
             </div>
         </div>
     </main>
