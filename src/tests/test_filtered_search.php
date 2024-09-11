@@ -9,13 +9,23 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="../js/filtered_search_pizzas.js"></script>
 </head>
+<?php
+$active_filter = '';
+if(isset($_GET['filter'])){
+    $active_filter = $_GET['filter'];
+}
+?>
 
 <body>
     <a href="../index.php">Accueil</a>
-    <a href="#" class="filter-link active-filter" data-filter="">Toutes nos pizzas</a>
-    <a href="#" class="filter-link" data-filter="is_classic">Les classiques</a>
-    <a href="#" class="filter-link" data-filter="is_new">Les nouveautés</a>
-    <a href="#" class="filter-link" data-filter="sells_count">Les + demandées</a>
+    <a href="#" class="filter-link <?= ($active_filter == 'all') ? 'active-filter' : '';?>" data-filter="">Toutes nos
+        pizzas</a>
+    <a href="#" class="filter-link <?= ($active_filter == 'classic') ? 'active-filter' : '';?>"
+        data-filter="is_classic">Les classiques</a>
+    <a href="#" class="filter-link <?= ($active_filter == 'new') ? 'active-filter' : '';?>" data-filter="is_new">Les
+        nouveautés</a>
+    <a href="#" class="filter-link <?= ($active_filter == 'sales_count') ? 'active-filter' : '';?>"
+        data-filter="sells_count">Les + demandées</a>
     <h3>Sélectionnez des ingrédients :</h3>
     <form id="ingredient-form">
         <?php
