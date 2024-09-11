@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mar. 10 sep. 2024 à 13:27
+-- Généré le : mer. 11 sep. 2024 à 13:15
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -203,7 +203,7 @@ INSERT INTO `dish_ingredients` (`dish_ingredient_id`, `dish_name`, `ingredient_i
 (188, 'Salmon', 8),
 (189, 'Salmon', 11),
 (190, 'Salmon', 19),
-(199, 'Quatre fromages', 5),
+(199, 'Quatre fromages', 6),
 (200, 'Quatre fromages', 15),
 (201, 'Quatre fromages', 16),
 (202, 'Quatre fromages', 25);

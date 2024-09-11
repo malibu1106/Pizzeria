@@ -6,7 +6,7 @@
 
             <ul class="burger-menu-links">
                 <li>
-                    <a href="../carte.php">Pizzas</a>
+                    <a href="../carte.php?filter=all">Pizzas</a>
                 </li>
                 <?php
                 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== 1){

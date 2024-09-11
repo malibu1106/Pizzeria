@@ -1,8 +1,6 @@
 <?php 
 session_start();
-$_SESSION['loggedIn'] = 1; // TEMP : Réglage temporaire pour indiquer l'état de connexion
-$_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID de l'utilisateur connecté
-// echo ($_SESSION['loggedIn'] == 1) ? "Je suis connecté" : "Je suis PAS connecté"; // TEMP : Message pour vérifier l'état de connexion
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

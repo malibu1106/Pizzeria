@@ -99,6 +99,11 @@ h1 {
     border-radius: 50%;
 }
 
+.pizza-promo {
+    color: yellow;
+}
+
+
 /* pizza */
 .container-pizza-info {
     background-color: var(--box-color);
