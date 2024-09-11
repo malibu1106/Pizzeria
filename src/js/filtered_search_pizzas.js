@@ -24,8 +24,8 @@ $(document).ready(function () {
         // Requête AJAX pour récupérer les résultats
         $.ajax({
             type: 'POST',
-            url: 'tests/search_pizzas_ajax.php',
-            data: { 
+            url: 'pizzas/search_pizzas_ajax.php',
+            data: {
                 ingredients: JSON.stringify(ingredientsArray),
                 selected_filter: selectedFilter // Ajoute le filtre sélectionné
             },
@@ -42,7 +42,7 @@ $(document).ready(function () {
     $('#ingredient-select').on('change', fetchPizzas);
 
     // Ajoute un écouteur d'événements pour les filtres
-    $('a.filter-link').on('click', function(e) {
+    $('a.filter-link').on('click', function (e) {
         e.preventDefault();
         $('a.filter-link').removeClass('active-filter'); // Retire la classe active des autres filtres
         $(this).addClass('active-filter'); // Ajoute la classe active sur le filtre sélectionné

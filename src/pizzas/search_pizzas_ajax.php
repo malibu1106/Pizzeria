@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
 
     // Construction de la base de la requête SQL
     $sql = "
-        SELECT d.name, d.description, MIN(d.price) as price, MAX(d.sells_count) as sells_count
+        SELECT d.name, d.description, MIN(d.price) as price, MAX(d.sells_count) as sells_count, d.image_url, d.is_discounted
         FROM dishes d
         LEFT JOIN dish_ingredients di ON d.name = di.dish_name
     ";
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
         if (!empty($conditions)) {
             $sql .= " WHERE " . implode(' AND ', $conditions);
         }
-        $sql .= " GROUP BY d.name, d.description";
+        $sql .= " GROUP BY d.name, d.description, d.image_url, d.is_discounted";
         $sql .= " ORDER BY MAX(d.sells_count) DESC"; // Utilisation de MAX pour que ça fonctionne avec GROUP BY
         $sql .= " LIMIT 3"; // Limite les résultats à 3 pizzas
     
@@ -48,15 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
         if (!empty($conditions)) {
             $sql .= " WHERE " . implode(' AND ', $conditions);
         }
-        $sql .= " GROUP BY d.name, d.description";
+        $sql .= " GROUP BY d.name, d.description, d.image_url, d.is_discounted";
     }
 
     // Si aucun ingrédient ni filtre n'est sélectionné, récupérer toutes les pizzas
     if (empty($selected_ingredients) && empty($selected_filter)) {
         $sql = "
-            SELECT d.name, d.description, MIN(d.price) as price
+            SELECT d.name, d.description, MIN(d.price) as price, d.image_url, d.is_discounted
             FROM dishes d
-            GROUP BY d.name, d.description
+            GROUP BY d.name, d.description, d.image_url, d.is_discounted
         ";
     }
 
@@ -74,9 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
 
     // Génère le HTML des résultats
     if ($pizzas) {
+        echo '<div class="container-pizza">';
         foreach ($pizzas as $pizza) {
             include 'pizza_card.php';
         }
+        echo '</div>';
     } else {
         echo 'Aucune pizza trouvée avec les critères sélectionnés.';
     }
