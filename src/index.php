@@ -49,7 +49,6 @@ session_start();
         </figure>
         <!-- a changer chaque jours en php pour afficher une pizza différente -->
 
-
         <!-- grid notre carte -->
         <h2 class="title-color">Notre carte</h2>
         <div class="container-grid">

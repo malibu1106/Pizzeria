@@ -46,6 +46,10 @@ html {
     scroll-behavior: smooth;
 }
 
+footer {
+    background-color: var(--box-color);
+}
+
 .container-footer {
     text-align: center;
     display: flex;

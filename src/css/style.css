@@ -43,12 +43,6 @@
     /* Annuler le délai de visibilité */
 }
 
-.a-venir {
-    text-align: center;
-    font-size: var(--desktop-size-xl);
-    color: var(--box-color);
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -97,19 +91,6 @@ h5 {
     font-size: var(--size-small);
     text-align: center;
     margin-top: -10px;
-}
-
-/* video header */
-video {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    z-index: -1;
-}
-
-main {
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
-    margin-top: 100vh;
 }
 
 /* bandeau fixed */
@@ -504,6 +485,20 @@ h5 {
 /* ------ desktop ------  */
 @media (min-width: 1024px) {
 
+    /* video header */
+    video {
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        z-index: -1;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    main {
+        margin-top: 100vh;
+    }
+
+    /* reset */
     h1,
     h2,
     h3,
@@ -672,10 +667,6 @@ h5 {
     .item5::before {
         background-image: url("../img/grid/nos_offres_spéciales.png");
     }
-
-
-
-
 
     /* notre histoire */
     .sous-titre {

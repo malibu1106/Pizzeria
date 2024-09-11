@@ -56,3 +56,20 @@ body {
 .active-filter {
     outline: solid white 2px;
 }
+
+h1 {
+    text-align: center;
+    font-family: "itim-regular";
+    color: var(--title-color);
+    text-transform: uppercase;
+}
+
+.container-info-pizza {
+    background-color: var(--box-color);
+}
+
+/* ----- tablet ----- */
+@media all and (min-width: 768px) and (max-width: 1024px) {}
+
+/* ------ desktop ------  */
+@media (min-width: 1024px) {}

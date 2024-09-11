@@ -26,5 +26,5 @@
                 </div>
             </div>
         </div>
-        <img class="logo-el-chorizo-footer-responsive" src="../img/el_chorizo_logo_footer.png" alt="logo">
+        <img class="logo-el-chorizo-footer-responsive" src="../img/el_chorizo_logo.png" alt="logo">
     </footer>
