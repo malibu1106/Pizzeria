@@ -15,18 +15,25 @@
 <body>
     <header>
         <?php include_once './include/nav.php'; ?>
-        <img class="header_carte" src="../img/header_carte.jpg" alt="pizza">
     </header>
+    <img class="header_carte" src="../img/header_carte_test.jpg" alt="pizza">
 
     <main>
         <h1>Carte</h1>
         <?php include 'tests/test_filtered_search.php'?>
+
         <div class="container-pizza">
+
             <figure class="container-pizza-info">
-                <img src="" alt="">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/test.png" alt="pizza">
+                    <!-- <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza"> -->
+                    <span class="pizza-price">10€</span>
+                </div>
                 <figcaption class="pizza-descritpion">
-                    <p>Title pizza</p>
-                    <p>Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de chorizo, de poivrons
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
                         rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
                     <a class="btn-commander" href="">Commander</a>
                 </figcaption>
@@ -35,41 +42,110 @@
             <!-- this block can be delete after -->
             <!-- this block can be delete after -->
             <figure class="container-pizza-info">
-                <img src="" alt="">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
                 <figcaption class="pizza-descritpion">
-                    <p>Title pizza</p>
-                    <p>Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de chorizo, de poivrons
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
                         rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
                     <a class="btn-commander" href="">Commander</a>
                 </figcaption>
             </figure>
             <figure class="container-pizza-info">
-                <img src="" alt="">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
                 <figcaption class="pizza-descritpion">
-                    <p>Title pizza</p>
-                    <p>Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de chorizo, de poivrons
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
                         rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
                     <a class="btn-commander" href="">Commander</a>
                 </figcaption>
             </figure>
             <figure class="container-pizza-info">
-                <img src="" alt="">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
                 <figcaption class="pizza-descritpion">
-                    <p>Title pizza</p>
-                    <p>Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de chorizo, de poivrons
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
                         rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
                     <a class="btn-commander" href="">Commander</a>
                 </figcaption>
             </figure>
             <figure class="container-pizza-info">
-                <img src="" alt="">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
                 <figcaption class="pizza-descritpion">
-                    <p>Title pizza</p>
-                    <p>Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de chorizo, de poivrons
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
                         rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
                     <a class="btn-commander" href="">Commander</a>
                 </figcaption>
             </figure>
+            <figure class="container-pizza-info">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
+                <figcaption class="pizza-descritpion">
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
+                        rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
+                    <a class="btn-commander" href="">Commander</a>
+                </figcaption>
+            </figure>
+            <figure class="container-pizza-info">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
+                <figcaption class="pizza-descritpion">
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
+                        rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
+                    <a class="btn-commander" href="">Commander</a>
+                </figcaption>
+            </figure>
+            <figure class="container-pizza-info">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
+                <figcaption class="pizza-descritpion">
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
+                        rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
+                    <a class="btn-commander" href="">Commander</a>
+                </figcaption>
+            </figure>
+            <figure class="container-pizza-info">
+                <div class="position-relative">
+                    <img class="img-pizza" src="../img/products/pizza_exemple.png" alt="pizza">
+                    <span class="pizza-price">10€</span>
+                </div>
+                <figcaption class="pizza-descritpion">
+                    <p class="title-pizza">Title pizza</p>
+                    <p class="description-pizza">Cette pizza est garnie de sauce tomate épicée, de mozzarella fondue, de
+                        chorizo, de poivrons
+                        rouges grillés et d'olives noires, le tout rehaussé d'une touche d'origan frais. </p>
+                    <a class="btn-commander" href="">Commander</a>
+                </figcaption>
+            </figure>
+
             <!-- this block can be delete after -->
             <!-- this block can be delete after -->
 

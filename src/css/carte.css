@@ -57,6 +57,15 @@ body {
     outline: solid white 2px;
 }
 
+/* header img carte */
+.header_carte {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+    transition: 0.3s ease;
+}
+
 h1 {
     text-align: center;
     font-family: "itim-regular";
@@ -64,12 +73,108 @@ h1 {
     text-transform: uppercase;
 }
 
-.container-info-pizza {
+.container-pizza {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+/* price for pizza */
+.position-relative {
+    position: relative;
+}
+
+.pizza-price {
+    position: absolute;
+    z-index: 2;
+    right: 5%;
+    bottom: 5%;
     background-color: var(--box-color);
+    padding: 4%;
+    border-radius: 50%;
+}
+
+/* pizza */
+.container-pizza-info {
+    background-color: var(--box-color);
+    width: 47%;
+    color: var(--text-color);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 20px 30px, rgba(0, 0, 0, 0.12) 0px -8px 20px, rgba(0, 0, 0, 0.12) 0px 2px 4px, rgba(0, 0, 0, 0.17) 0px 8px 10px, rgba(0, 0, 0, 0.09) 0px -2px 4px;
+}
+
+.position-relative>img {
+    border-radius: 12px 12px 0px 0px;
+    width: fit-content;
+    min-height: 210px;
+    max-height: 210px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.title-pizza {
+    color: var(--title-color);
+    text-decoration: underline 1px solid var(--title-color);
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.pizza-descritpion {
+    padding: 3%;
+    text-align: center;
+    font-size: var(--size-small);
+
+}
+
+/* btn commander */
+.btn-commander {
+    display: inline-block;
+    width: 150px;
+    text-transform: uppercase;
+    background-color: var(--title-color);
+    color: var(--box-color);
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 2%;
+    margin: 10px auto;
 }
 
 /* ----- tablet ----- */
-@media all and (min-width: 768px) and (max-width: 1024px) {}
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    .container-pizza {
+        width: 90%;
+    }
+
+    .container-pizza-info {
+        width: 32%;
+        height: auto;
+    }
+}
 
 /* ------ desktop ------  */
-@media (min-width: 1024px) {}
+@media (min-width: 1024px) {
+
+    /* header carte img */
+    .header_carte {
+        height: 300px;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 20%;
+    }
+
+    .container-pizza {
+        width: 80%;
+    }
+
+    .container-pizza-info {
+        width: 20%;
+        height: auto;
+    }
+}

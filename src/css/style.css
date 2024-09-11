@@ -21,6 +21,19 @@
 
 }
 
+video {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    object-fit: cover;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+main {
+    margin-top: 100vh;
+}
 
 .container-bandeau {
     position: fixed;
@@ -167,11 +180,13 @@ h2 {
     width: 85%;
     margin: auto;
     margin-bottom: 2%;
+    transition: 0.5s ease;
 }
 
 .item {
     position: relative;
     margin-bottom: 20px;
+    transition: 0.5s ease;
 
     img {
         border-radius: 12px;
@@ -486,7 +501,7 @@ h5 {
 @media (min-width: 1024px) {
 
     /* video header */
-    video {
+    /* video {
         position: absolute;
         top: 0;
         width: 100vw;
@@ -496,7 +511,7 @@ h5 {
 
     main {
         margin-top: 100vh;
-    }
+    } */
 
     /* reset */
     h1,
