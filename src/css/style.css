@@ -3,7 +3,6 @@
 /* FONTS */
 @import "fonts.css";
 
-/* Variables pour le mode clair */
 :root {
     --background-color: #235a47;
     --text-color: #f2f2f2;
