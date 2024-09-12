@@ -15,6 +15,13 @@
     --size-very-small: 0.875rem;
 }
 
+main {
+    background-image: url("../img/bg_connexion.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -22,36 +29,97 @@ html {
 body {
     background-color: var(--background-color);
     font-family: "alata-regular";
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    color: var(--title-color);
+    text-align: center;
+    padding-top: 1rem;
+    font-family: "itim-regular";
+    font-size: var(--size-xl);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h2 {
+    color: var(--title-color);
+    margin-bottom: 1rem;
+    font-size: var(--size-medium);
+}
+
+.container-formulaire {
+    padding-bottom: 5%;
 }
 
 form {
     display: flex;
     flex-direction: column;
     max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--box-color);
+    padding: 2rem;
+    border-radius: 8px;
 }
 
 input {
-    margin: 1vw 4vh;
-    height: 4vh;
+    margin: 0.5rem 0;
+    height: 2.5rem;
+    padding: 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: var(--size-small);
+    outline: 2px solid var(--title-color);
+}
+
+/* input style focus */
+input:not(:placeholder-shown):user-invalid {
+    outline: 2px solid red;
+}
+
+input:not(:placeholder-shown):user-valid {
+    outline: 2px solid green;
+}
+
+input:focus:invalid {
+    outline: 2px solid #c95426;
 }
 
 label {
-    display: none;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
-/* Cache initialement le formulaire d'inscription */
-.signin-container {
-    display: none;
+button {
+    background-color: var(--title-color);
+    border: none;
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    font-size: var(--size-small);
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0.5rem;
 }
 
-/* Cache le bouton de connexion par défaut */
-#show-login-btn {
-    display: none;
+button:hover {
+    background-color: #d97f5f;
+}
+
+.toggle-buttons {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.toggle-buttons button {
+    margin: 0 0.5rem;
 }
 
 .password-container {
     position: relative;
-    display: flex;
+    margin-bottom: 1rem;
 }
 
 .password-container input {
@@ -60,14 +128,88 @@ label {
 
 .toggle-password {
     position: absolute;
-    height: 100%;
-    right: calc(1vw + 25px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .toggle-password img {
-    height: 25px;
+    height: 20px;
     cursor: pointer;
+}
+
+/* Affiche le formulaire d'inscription quand nécessaire */
+.signin-container {
+    display: none;
+}
+
+.toggle-password-inscription {
+    position: absolute;
+    top: 70%;
+}
+
+/* ----- tablet ----- */
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    .container-formulaire {
+        padding-bottom: 5%;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    .password-container input {
+        width: 100%;
+    }
+
+    .toggle-password {
+        right: 15px;
+    }
+
+    .toggle-password-inscription {
+        position: absolute;
+        top: 70%;
+    }
+}
+
+/* ------ desktop ------  */
+@media (min-width: 1024px) {
+    main {
+        background-position: bottom;
+    }
+
+    .container-formulaire {
+        display: flex;
+        width: 80%;
+        margin: auto;
+        justify-content: space-around;
+        /* margin-bottom: 3%; */
+    }
+
+    .form-inscription,
+    .form-connexion {
+        width: 400px;
+    }
+
+    .signin-container {
+        display: block;
+    }
+
+    .toggle-buttons {
+        display: none;
+    }
+
+    .password-container input {
+        width: 100%;
+    }
+
+    .toggle-password {
+        right: 20px;
+    }
+
+    .toggle-password-inscription {
+        position: absolute;
+        top: 70%;
+        right: 5%;
+    }
 }
