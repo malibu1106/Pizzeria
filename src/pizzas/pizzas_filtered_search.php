@@ -17,38 +17,50 @@ if(isset($_GET['filter'])){
 ?>
 
 <body>
-    <a href="../index.php">Accueil</a>
-    <a href="#" class="filter-link <?= ($active_filter == 'all') ? 'active-filter' : '';?>" data-filter="">Toutes nos
-        pizzas</a>
-    <a href="#" class="filter-link <?= ($active_filter == 'classic') ? 'active-filter' : '';?>"
-        data-filter="is_classic">Les classiques</a>
-    <a href="#" class="filter-link <?= ($active_filter == 'new') ? 'active-filter' : '';?>" data-filter="is_new">Les
-        nouveautés</a>
-    <a href="#" class="filter-link <?= ($active_filter == 'sales_count') ? 'active-filter' : '';?>"
-        data-filter="sells_count">Les + demandées</a>
-    <h3>Sélectionnez des ingrédients :</h3>
-    <form id="ingredient-form">
-        <?php
-    // Connexion à la base de données et récupération des ingrédients
-    require_once('php_sql/db_connect.php');
-    $sql = "SELECT ingredient_id, name, image_url FROM ingredients";
-    $query = $db->prepare($sql);
-    $query->execute();
-    $ingredients = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    // Génération des options du select pour chaque ingrédient
-    echo '<select id="ingredient-select" multiple>';
-    foreach ($ingredients as $ingredient) {
-        echo '<option value="' . $ingredient['ingredient_id'] . '" data-image="'.$ingredient['image_url'].'">' . $ingredient['name'] . '</option>';
-    }
-    echo '</select>';
-    ?>
-    </form>
+    <div class="container-liste-pizza">
+        <a href="#" class="filter-link <?= ($active_filter == 'all') ? 'active-filter' : '';?>" data-filter="">Toutes
+            nos
+            pizzas</a>
+        <a href="#" class="filter-link <?= ($active_filter == 'classic') ? 'active-filter' : '';?>"
+            data-filter="is_classic">Les classiques</a>
+        <a href="#" class="filter-link <?= ($active_filter == 'new') ? 'active-filter' : '';?>" data-filter="is_new">Les
+            nouveautés</a>
+        <a href="#" class="filter-link <?= ($active_filter == 'sales_count') ? 'active-filter' : '';?>"
+            data-filter="sells_count">Les + demandées</a>
+    </div>
+
+    <h3>Sélectionnez des ingrédients :</h3>
+    <div class="ingredient-selection-container">
+        <form id="ingredient-form">
+            <?php
+        // Connexion à la base de données et récupération des ingrédients
+        require_once('php_sql/db_connect.php');
+        $sql = "SELECT ingredient_id, name, image_url FROM ingredients";
+        $query = $db->prepare($sql);
+        $query->execute();
+        $ingredients = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        // Génération des options du select pour chaque ingrédient
+        echo '<select id="ingredient-select" multiple>';
+        foreach ($ingredients as $ingredient) {
+            echo '<option value="' . $ingredient['ingredient_id'] . '" data-image="' . $ingredient['image_url'] . '">' . $ingredient['name'] . '</option>';
+        }
+        echo '</select>';
+        ?>
+        </form>
+
+        <div class="selected-ingredients">
+            <h4>Ingrédients sélectionnés :</h4>
+            <ul id="selected-ingredient-list"></ul>
+        </div>
+    </div>
+
 
     <h3>Résultats des pizzas :</h3>
     <div id="pizza-results"></div>
 
-
+    <script src="../js/test.js"></script>
 </body>
 
 </html>

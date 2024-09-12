@@ -25,7 +25,14 @@ body {
 }
 
 .active-filter {
-    outline: solid white 2px;
+    outline: 2px solid var(--title-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1.05);
+}
+
+.active-filter:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* header img carte */
@@ -35,6 +42,24 @@ body {
     object-fit: cover;
     object-position: 50% 20%;
     transition: 0.3s ease;
+}
+
+/* liste des pizzas et selecteur */
+.container-liste-pizza {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.container-liste-pizza>a {
+    width: 140px;
+    margin: 0 auto 10px;
+    text-align: center;
+    background: var(--box-color);
+    border-radius: 12px;
+    color: var(--text-color);
+    padding: 1%;
 }
 
 h1 {
@@ -124,6 +149,17 @@ h1 {
 
 /* ----- tablet ----- */
 @media all and (min-width: 768px) and (max-width: 1024px) {
+
+    /* liste des pizzas et selecteur */
+    .container-liste-pizza {
+        width: 80%;
+        margin: auto;
+    }
+
+    .container-liste-pizza>a {
+        width: 150px;
+    }
+
     .container-pizza {
         width: 90%;
     }
@@ -136,6 +172,17 @@ h1 {
 
 /* ------ desktop ------  */
 @media (min-width: 1024px) {
+
+    /* liste des pizzas et selecteur */
+    .container-liste-pizza {
+        width: 50%;
+        margin: auto;
+        margin-top: 10px;
+    }
+
+    .container-liste-pizza>a {
+        width: 160px;
+    }
 
     /* header carte img */
     .header_carte {
