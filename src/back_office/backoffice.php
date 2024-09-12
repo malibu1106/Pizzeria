@@ -16,7 +16,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
 <body class="container my-4">
     <div class="d-flex justify-content-between mb-4">
         <a href="../index.php" class="btn btn-primary">Retour au site</a>
-        <a href="../back_office/backoffice.php" class="btn btn-primary">Accueil - Gestion</a>
+        <a href="../back_office/backoffice.php" class="btn btn-primary">Gestion</a>
     </div>
     <br><br>
 
@@ -30,9 +30,9 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
     </p>
 
     <p style="color:red"><span style="text-decoration:underline;">Gestion</span><br>
-        <a href="../back_office/test_show_orders_as_admin.php">Commandes admin</a>
-        < Need implémenter edit status, suppr, impr<br>
+        <a href="../back_office/orders.php">Commandes admin</a>
     </p>
+    <hr>
 
     <p style="color:red"><span style="text-decoration:underline;">A faire nourriture</span><br>
         <a href="../back_office/test_edit_pizza.php">Modifier/supprimer une pizza</a>
@@ -49,11 +49,11 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
         <a href="">Page commandes en live</a><br>
         caisse < toutes<br>
             cuisine < cmd à faire seulement < alertes visuelles/sonores, mode auto / mode manuel <br>
-                <a href="">Commandes archivées</a><br>
                 <a href="">Gestion des tickets</a>
                 < séparer les normaux / commandes </p>
 
                     <p style="color:red"><span style="text-decoration:underline;">Potentiellement + tard</span><br>
+                        <a href="">Pages stats</a><br>
                         <a href="">Ajouter un plat</a><br>
                         <a href="">Modifier/supprimer un plat</a><br>
                         <a href="">Ajouter une offre spéciale</a><br>

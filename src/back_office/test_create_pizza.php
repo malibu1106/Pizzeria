@@ -1,26 +1,26 @@
 <?php 
 session_start();
-if(!empty($_SESSION['info_message'])){
-    echo '<div class="alert alert-info text-center">'.$_SESSION['info_message'].'</div>';
-} 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <script src="../js/max_image_size_check.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Ajouter une Pizza</title>
+    <title>Ajouter une nouvelle pizza</title>
 </head>
 
-<body>
+<body class="container my-4">
+    <div class="d-flex justify-content-between mb-4">
+        <a href="../index.php" class="btn btn-primary">Retour au site</a>
+        <a href="../back_office/backoffice.php" class="btn btn-primary">Gestion</a>
+    </div>
+    <br><br>
     <div class="container mt-5 mx-auto">
-        <a href="../index.php" class="btn btn-primary mb-4">Accueil</a>
-        <h1 class="mb-4">Ajouter une Nouvelle Pizza</h1>
+        <h1 class="mb-4 text-center">Ajouter une nouvelle pizza</h1>
 
-        <form class="bg-light" id="uploadForm" action="bo_create_pizza.php" method="POST" enctype="multipart/form-data"
-            class="needs-validation" novalidate>
+        <form class="bg-light rounded-2 p-5" id="uploadForm" action="bo_create_pizza.php" method="POST"
+            enctype="multipart/form-data" class="needs-validation" novalidate>
             <div class="mb-3 col-md-6">
                 <label for="name" class="form-label">Nom de la pizza :</label>
                 <input type="text" id="name" name="name" class="form-control" required>

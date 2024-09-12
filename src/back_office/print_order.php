@@ -23,7 +23,7 @@ session_start();
 
 <body class="container my-4">
     <div class="d-flex justify-content-between mb-4 print-button">
-        <a href="../back_office/test_show_orders_as_admin.php" class="btn btn-primary">Retour aux commandes</a>
+        <a href="../back_office/orders.php" class="btn btn-primary">Retour aux commandes</a>
         <button class="btn btn-primary" onclick="window.print()">Imprimer cette commande</button>
     </div>
 
