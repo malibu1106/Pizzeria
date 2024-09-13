@@ -1,9 +1,14 @@
 @font-face {
     font-family: "alata-regular";
-    src: url(../fonts/Alata-Regular.ttf);
+    src: url(../css/fonts/Alata-Regular.ttf);
+}
+
+@font-face {
+    font-family: "gagalin-regular";
+    src: url(../css/fonts/Gagalin-Regular.otf);
 }
 
 @font-face {
     font-family: "itim-regular";
-    src: url(../fonts/Itim-Regular.ttf);
+    src: url(../css/fonts/Itim-Regular.ttf);
 }
