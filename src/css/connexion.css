@@ -1,7 +1,7 @@
 /* CLEAN CSS */
 @import "body_reset.css";
 /* FONTS */
-@import "fonts.css";
+@import "../css/fonts.css";
 
 /* Variables pour le mode clair */
 :root {
@@ -20,6 +20,7 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 950px;
 }
 
 html {
@@ -176,6 +177,7 @@ button:hover {
 @media (min-width: 1024px) {
     main {
         background-position: bottom;
+        height: 900px;
     }
 
     .container-formulaire {
