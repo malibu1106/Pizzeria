@@ -15,12 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
         SELECT d.name, d.description, MIN(d.price) as price, MAX(d.sells_count) as sells_count, d.image_url, d.is_discounted
         FROM dishes d
         LEFT JOIN dish_ingredients di ON d.name = di.dish_name
+        LEFT JOIN ingredients i ON di.ingredient_id = i.ingredient_id
     ";
 
     // Variable pour ajouter les conditions WHERE
     $conditions = [];
 
-    // Ajout de la condition pour les ingrédients, s'ils existent
+    // Ajout de la condition pour les ingrédients sélectionnés, s'ils existent
     if (!empty($selected_ingredients)) {
         $placeholders = implode(',', array_fill(0, count($selected_ingredients), '?'));
         $conditions[] = "di.ingredient_id IN ($placeholders)";
@@ -35,30 +36,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
 
     // Gestion du filtre 'Les + demandées'
     if ($selected_filter === 'sells_count') {
-        // On ajoute un tri basé sur la colonne sells_count avec agrégation
-        if (!empty($conditions)) {
-            $sql .= " WHERE " . implode(' AND ', $conditions);
-        }
-        $sql .= " GROUP BY d.name, d.description, d.image_url, d.is_discounted";
-        $sql .= " ORDER BY MAX(d.sells_count) DESC"; // Utilisation de MAX pour que ça fonctionne avec GROUP BY
-        $sql .= " LIMIT 3"; // Limite les résultats à 3 pizzas
-    
+        $orderBy = " ORDER BY MAX(d.sells_count) DESC LIMIT 3";
     } else {
-        // Gestion des autres cas avec ou sans ingrédients
-        if (!empty($conditions)) {
-            $sql .= " WHERE " . implode(' AND ', $conditions);
-        }
-        $sql .= " GROUP BY d.name, d.description, d.image_url, d.is_discounted";
+        $orderBy = '';
     }
 
-    // Si aucun ingrédient ni filtre n'est sélectionné, récupérer toutes les pizzas
-    if (empty($selected_ingredients) && empty($selected_filter)) {
-        $sql = "
-            SELECT d.name, d.description, MIN(d.price) as price, d.image_url, d.is_discounted
-            FROM dishes d
-            GROUP BY d.name, d.description, d.image_url, d.is_discounted
-        ";
+    // Ajout de la condition pour vérifier que tous les ingrédients sont disponibles
+    // Cette ligne doit se référer à l'alias correct pour la table des ingrédients
+    $conditions[] = "i.is_available = 1";
+
+    // Construction de la clause WHERE
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(' AND ', $conditions);
     }
+
+    // Ajout du GROUP BY pour regrouper par pizza et filtrer celles qui ont tous les ingrédients disponibles
+    $sql .= "
+        GROUP BY d.name, d.description, d.image_url, d.is_discounted
+        HAVING COUNT(DISTINCT di.ingredient_id) = (SELECT COUNT(*) FROM dish_ingredients di2 WHERE di2.dish_name = d.name)
+    ";
+    
+    $sql .= $orderBy;
 
     // Préparation et exécution de la requête
     if (!empty($selected_ingredients)) {
@@ -85,4 +83,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
 } else {
     echo 'Requête invalide.';
 }
-?>
