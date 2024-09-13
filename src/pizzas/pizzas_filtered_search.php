@@ -36,7 +36,7 @@ if(isset($_GET['filter'])){
             <?php
         // Connexion à la base de données et récupération des ingrédients
         require_once('php_sql/db_connect.php');
-        $sql = "SELECT ingredient_id, name, image_url FROM ingredients";
+        $sql = "SELECT ingredient_id, name, image_url FROM ingredients WHERE is_available = 1";
         $query = $db->prepare($sql);
         $query->execute();
         $ingredients = $query->fetchAll(PDO::FETCH_ASSOC);
