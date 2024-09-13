@@ -1,6 +1,3 @@
-<?php 
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,14 +15,42 @@ session_start();
             display: none;
         }
     }
+
+    /* Centrer la table */
+    .table-container {
+        display: flex;
+        justify-content: center;
+    }
     </style>
 </head>
 
-<body class="container my-4">
-    <div class="d-flex justify-content-between mb-4 print-button">
-        <a href="../back_office/orders.php" class="btn btn-primary">Retour aux commandes</a>
-        <button class="btn btn-primary" onclick="window.print()">Imprimer cette commande</button>
-    </div>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid d-flex align-items-center">
+            <p class="text-white fw-bold fs-3 mb-0">Tableau de bord</p> <!-- Centré et plus gros/gras -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="navbar-nav ms-auto">
+                        <button class="btn btn-primary" onclick="window.print()">Imprimer cette commande</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php">Retour au site</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../back_office/backoffice.php">Gestion</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <?php
         require_once('../php_sql/db_connect.php');
@@ -79,7 +104,11 @@ session_start();
 
             if ($order_details) {
                 $current_order = $order_details[0]; // Récupérer les infos générales de la commande
-                echo '<table class="table table-bordered">';
+
+                // Conteneur pour centrer la table
+                echo '<div class="container w-100 w-md-75 w-lg-50">';
+                // Ajouter les classes Bootstrap pour la largeur responsive
+                echo '<table class="table table-bordered mt-5 ">';
                 echo '<thead class="table-dark"><tr><th colspan="3">
                 <div class="d-flex justify-content-between">Commande n°'.$current_order['order_id'].' - '.$current_order['first_name'].' '.$current_order['last_name'].'</div>
                 </th></tr></thead>';
@@ -135,6 +164,7 @@ session_start();
 
                 echo '<tr><td colspan="2">Réglement : '.$current_order['payment_method'].'</td><td><strong>Total : '.$current_order['total'].'€</strong></td></tr>';
                 echo '</tbody></table>';
+                echo '</div>'; // Fermeture du conteneur
             } else {
                 echo "<p>Aucune commande trouvée.</p>";
             }

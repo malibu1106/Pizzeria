@@ -7,18 +7,33 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Ajouter une base</title>
+    <title>Ajouter une nouvelle base</title>
 </head>
 
-<body class="container my-4">
-    <div class="d-flex justify-content-between mb-4">
-        <a href="../index.php" class="btn btn-primary">Retour au site</a>
-        <a href="../back_office/backoffice.php" class="btn btn-primary">Gestion</a>
-    </div>
-    <br><br>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid d-flex align-items-center">
+            <p class="text-white fw-bold fs-3 mb-0">Back Office</p> <!-- Centré et plus gros/gras -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php">Retour au site</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../back_office/backoffice.php">Gestion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="d-flex justify-content-center">
-        <div class="container mt-5 mx-auto col-md-6">
+    <div class="d-flex justify-content-center mt-4">
+        <div class="container mx-auto col-md-6">
             <h1 class="mb-4 text-center">Ajouter une nouvelle base</h1>
 
             <form class="bg-light rounded-2 p-5" id="baseForm" action="bo_create_base.php" method="POST"
@@ -52,7 +67,7 @@ session_start();
                 </div>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success">Ajouter la base</button>
+                    <button type="submit" class="mt-4 btn btn-success">Ajouter la base</button>
                 </div>
             </form>
         </div>

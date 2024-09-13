@@ -29,23 +29,42 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
     </script>
 </head>
 
-<body class="container my-4">
-    <div class="d-flex justify-content-between mb-4">
-        <a href="../index.php" class="btn btn-primary">Retour au site</a>
-        <a href="../back_office/backoffice.php" class="btn btn-primary">Accueil - Gestion</a>
-    </div>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid d-flex align-items-center">
+            <p class="text-white fw-bold fs-3 mb-0">Tableau de bord</p> <!-- Centré et plus gros/gras -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php">Retour au site</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../back_office/backoffice.php">Gestion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!-- Filtrage des commandes -->
-    <div class="d-flex justify-content-between mb-4 w-50 mx-auto">
+    <div class="d-flex justify-content-between mt-4 mb-4 w-75 mx-auto">
         <a href="orders.php" class="btn btn-primary">En cours</a>
-        <a href="orders.php?order_display=all" class="btn btn-primary">Toutes les commandes</a>
-        <a href="orders.php?order_display=archivée" class="btn btn-primary">Commandes archivées</a>
+        <a href="orders.php?order_display=pretes" class="btn btn-primary">Prêtes</a>
+        <a href="orders.php?order_display=livraisons" class="btn btn-primary">En livraison</a>
+        <a href="orders.php?order_display=terminees" class="btn btn-primary">Terminées</a>
+        <a href="orders.php?order_display=archivees" class="btn btn-primary">Commandes archivées</a>
     </div>
+
     <?php
 // Récupérer la valeur de 'order_display' si elle est définie
 $orderDisplay = isset($_GET['order_display']) ? $_GET['order_display'] : '';
 
-// Affichage du formulaire si la valeur de 'order_display' est 'all' ou 'archivée'
-if ($orderDisplay === 'all' || $orderDisplay === 'archivée'): ?>
+// Affichage du formulaire si la valeur de 'order_display' est 'terminees', 'all' ou 'archivees'
+if ($orderDisplay === 'terminees' || $orderDisplay === 'all' || $orderDisplay === 'archivees'): ?>
     <!-- Formulaire pour filtrer par date -->
     <form action="orders.php" method="GET" class="mb-4 w-50 mx-auto">
         <div class="form-check d-flex justify-content-around align-items-center">
@@ -57,14 +76,13 @@ if ($orderDisplay === 'all' || $orderDisplay === 'archivée'): ?>
         <input type="hidden" name="order_display" value="<?= htmlspecialchars($orderDisplay) ?>">
     </form>
 
-    <?php
-endif;
+    <?php endif;
 
-// Si 'order_display' n'est pas défini, ajouter deux <br>
-if (!isset($_GET['order_display'])) {
+    // Si 'order_display' n'est pas défini, ajouter deux <br>
+    if (!isset($_GET['order_display'])) {
     echo '<br><br>';
-}
-?>
+    }
+    ?>
 
     <div class="row">
         <!-- Début de la grille Bootstrap -->
@@ -72,22 +90,37 @@ if (!isset($_GET['order_display'])) {
         <?php
         require_once('../php_sql/db_connect.php');
 
-        // Par défaut, on montre les commandes "A faire - Payée" et "A faire - Non payée"
-$whereClause = "o.order_status = 'A faire - Payée' OR o.order_status = 'A faire - Non payée'";
+        // Par défaut, on montre les commandes "en cours"
+$whereClause = "(o.order_status = 'en préparation')";
 
 // Si un paramètre GET 'order_display' est passé, on ajuste la requête
 if (isset($_GET['order_display'])) {
-    if ($_GET['order_display'] === 'all') {
-        // Si 'all' est passé, on exclut seulement les commandes archivées
-        $whereClause = "o.order_status != 'archivée'";
-    } elseif ($_GET['order_display'] === 'archivée') {
-        // Si 'archivée' est passé, on prend seulement les commandes archivées
-        $whereClause = "o.order_status = 'archivée'";
+    switch ($_GET['order_display']) {
+        case 'pretes':
+            // Filtrer uniquement les commandes terminées
+            $whereClause = "o.order_status = 'prête'";
+            break;
+        case 'livraisons':
+            // Filtrer uniquement les commandes en cours de livraison
+            $whereClause = "(o.is_delivery = 1 AND o.order_status = 'partie')";
+            break;
+            case 'terminees':
+                // Filtrer uniquement les commandes terminées
+                $whereClause = "o.paid = 1 AND o.order_status = 'partie' AND (o.is_delivery = 1 AND o.is_delivery_complete = 1 OR o.is_delivery = 0)";
+                break;
+        case 'archivees':
+            // Filtrer uniquement les commandes archivées
+            $whereClause = "o.order_status = 'archivée'";
+            break;
+        default:
+            // Filtrer les commandes "en cours" par défaut
+            $whereClause = "(o.order_status = 'en cours')";
+            break;
     }
 }
 
-// Ajouter un filtrage par date si une date est sélectionnée
-if (isset($_GET['order_date']) && !empty($_GET['order_date'])) {
+// Ajouter un filtrage par date si une date est sélectionnée et applicable
+if (isset($_GET['order_date']) && !empty($_GET['order_date']) && ($orderDisplay === 'terminees' || $orderDisplay === 'all' || $orderDisplay === 'archivees')) {
     $selectedDate = $_GET['order_date'];
     $whereClause .= " AND DATE(o.date_order) = '$selectedDate'";
 }
@@ -100,7 +133,9 @@ $sql = "
         o.date_order, 
         o.order_status, 
         o.total,
-        o.payment_method, 
+        o.payment_method,
+        o.is_delivery,
+        o.is_delivery_complete, 
         u.first_name, 
         u.last_name, 
         u.email,
@@ -151,33 +186,14 @@ $sql = "
                 // Déterminer la classe Bootstrap en fonction du statut
                 $statusClass = '';
                 switch ($order['order_status']) {
-                    case 'A faire - Non payée':
+                    case 'en préparation':
                         $statusClass = 'bg-warning';
-                        $statusInfo = 'A faire - <span class="text-danger text-uppercase fw-bold">Non payée</span>';
                         break;
-                    case 'A faire - Payée':
-                        $statusClass = 'bg-warning';
-                        $statusInfo = 'A faire - <span class="text-success text-uppercase fw-bold">Payée</span>';
+                    case 'prête':
+                        $statusClass = 'bg-danger';
                         break;
-                    case 'Faite - Non payée':
-                        $statusClass = 'bg-success';
-                        $statusInfo = 'Faite - <span class="text-danger text-uppercase fw-bold">Non payée</span>';
-                        break;
-                    case 'Faite - Payée':
-                        $statusClass = 'bg-success';
-                        $statusInfo = 'Faite - <span class="text-success text-uppercase fw-bold">Payée</span>';
-                        break;
-                    case 'En attente':
-                        $statusClass = 'bg-dark text-white';
-                        $statusInfo = '<span class="text-warning text-uppercase fw-bold">En attente</span>';
-                        break;
-                    case 'Terminée':
+                    case 'partie':
                         $statusClass = 'bg-primary';
-                        $statusInfo = '<span class="text-primary text-uppercase fw-bold">Terminée</span>';
-                        break;
-                    case 'Archivée':
-                        $statusClass = 'bg-dark text-white';
-                        $statusInfo = '<span class="">Archivée</span>';
                         break;
                     default:
                         $statusClass = 'bg-light';  // Default color if status is unknown
@@ -201,7 +217,7 @@ $sql = "
 
                 // Nouvelle colonne pour chaque commande
                 echo '<div class="col-12 col-md-6 mb-4">'; // Colonne qui prend 100% de la largeur sur petits écrans, et 50% sur les grands
-                echo '<table class="table table-bordered">';
+                echo '<table class="table table-bordered ">';
                 echo '<thead class="'.$statusClass.'"><tr><th colspan="3">
                 <div class="d-flex justify-content-between">Commande n°'.$order['order_id'].' - '.$order['first_name'].' '.$order['last_name'].'
                     <div class="order_actions d-flex gap-2">
@@ -222,10 +238,17 @@ $sql = "
         </tr>';
         echo '<tr>
             <td colspan="2">Date : '.date('d/m/Y H:i', strtotime($order['date_order'])).'</td>
-            <td>Status : '.$statusInfo.'</td>
+            <td>Status : '.$order['order_status'].'</td>
 
 
         </tr>';
+        echo '<tr>
+        <td colspan="2">Délivrance : ' . ($order['is_delivery'] == 1 ? 'Livraison' : 'À emporter') . '</td>
+        <td>' . ($order['is_delivery'] == 1 
+            ? ($order['is_delivery_complete'] == 1 ? 'Livrée' : 'En cours') 
+            : ($order['is_delivery_complete'] == 1 ? 'Récupérée' : 'À récupérer')) . '</td>
+      </tr>';
+
         }
 
         echo '<tr>';
@@ -282,14 +305,15 @@ $sql = "
             <td><strong>Total : '.$previous_order_total.'€</strong></td>
         </tr>';
         echo '</tbody>
-    </table>';
-    echo '</div>'; // Fin de la dernière colonne
+        </table>';
+        echo '
+    </div>'; // Fin de la dernière colonne
     }
     ?>
 
 
-        <?php foreach ($user_orders as $order) : ?>
         <!-- Modal pour changer le statut -->
+        <?php foreach ($user_orders as $order) : ?>
         <div class="modal fade" id="editStatusModal-<?=$order['order_id']?>" tabindex="-1"
             aria-labelledby="editStatusLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -305,29 +329,20 @@ $sql = "
                             <div class="mb-3">
                                 <label for="orderStatus" class="form-label">Nouveau statut :</label>
                                 <select class="form-select" name="order_status" id="orderStatus">
-                                    <option value="A faire - Non payée"
-                                        <?= ($order['order_status'] == "A faire - Non payée" ? 'selected' : '') ?>>A
-                                        faire -
-                                        Non payée</option>
-                                    <option value="A faire - Payée"
-                                        <?= ($order['order_status'] == "A faire - Payée" ? 'selected' : '') ?>>A faire -
-                                        Payée</option>
-                                    <option value="Faite - Non payée"
-                                        <?= ($order['order_status'] == "Faite - Non payée" ? 'selected' : '') ?>>Faite -
-                                        Non
-                                        payée</option>
-                                    <option value="Faite - Payée"
-                                        <?= ($order['order_status'] == "Faite - Payée" ? 'selected' : '') ?>>Faite -
-                                        Payée
+                                    <option value="en préparation"
+                                        <?= ($order['order_status'] == "en préparation" ? 'selected' : '') ?>>En cours
                                     </option>
-                                    <option value="En attente"
-                                        <?= ($order['order_status'] == "En attente" ? 'selected' : '') ?>>En attente
+                                    <option value="prête" <?= ($order['order_status'] == "prête" ? 'selected' : '') ?>>
+                                        Prête
                                     </option>
-                                    <option value="Terminée"
-                                        <?= ($order['order_status'] == "Terminée" ? 'selected' : '') ?>>Terminée
+                                    <option value="partie"
+                                        <?= ($order['order_status'] == "partie" ? 'selected' : '') ?>>Partie
                                     </option>
-                                    <option value="Archivée"
-                                        <?= ($order['order_status'] == "Archivée" ? 'selected' : '') ?>>Archivée
+                                    <option value="terminée"
+                                        <?= ($order['is_delivery_complete'] == 1 ? 'selected' : '') ?>>
+                                        Terminée</option>
+                                    <option value="archivée"
+                                        <?= ($order['order_status'] == "archivée" ? 'selected' : '') ?>>Archivée
                                     </option>
                                 </select>
                             </div>
