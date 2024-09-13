@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mer. 11 sep. 2024 à 13:15
+-- Généré le : ven. 13 sep. 2024 à 06:48
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -283,18 +283,22 @@ CREATE TABLE `orders` (
   `cart_id` int NOT NULL,
   `date_order` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `total` decimal(8,2) NOT NULL,
-  `order_status` varchar(255) NOT NULL
+  `order_status` varchar(255) NOT NULL,
+  `payment_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `user_id`, `cart_id`, `date_order`, `total`, `order_status`) VALUES
-(1, 1, 1, '2024-09-03 11:54:03', 8.00, 'traitée'),
-(2, 1, 2, '2024-09-04 06:52:34', 31.40, 'en cours'),
-(3, 2, 3, '2024-09-05 07:55:29', 20.00, 'en cours'),
-(5, 1, 5, '2024-09-06 06:57:16', 17.15, 'test cmd');
+INSERT INTO `orders` (`order_id`, `user_id`, `cart_id`, `date_order`, `total`, `order_status`, `payment_method`) VALUES
+(1, 1, 1, '2024-09-12 11:54:03', 8.00, 'A faire - Non payée', 'CB'),
+(2, 1, 2, '2024-09-12 06:52:34', 31.40, 'Terminée', ''),
+(3, 2, 3, '2024-09-05 07:55:29', 20.00, 'Archivée', ''),
+(5, 1, 5, '2024-09-06 06:57:16', 17.15, 'En attente', ''),
+(7, 1, 5, '2024-09-06 07:57:16', 17.15, 'Faite - Payée', 'Nature'),
+(8, 1, 5, '2024-09-06 09:57:16', 17.15, 'A faire - Non payée', 'Cheque'),
+(9, 1, 5, '2024-09-06 11:57:16', 17.15, 'A faire - Non payée', 'Espèces');
 
 -- --------------------------------------------------------
 
@@ -418,7 +422,17 @@ CREATE TABLE `tickets` (
 
 INSERT INTO `tickets` (`ticket_id`, `user_id`, `last_name`, `first_name`, `email`, `phone`, `order_id`, `object`, `message`, `attachment`, `date_creation`, `ticket_status`) VALUES
 (1, 1, 'rereefefe', 'Roberto', 'roberto@admin.com', '054444444', 0, 'gfdgfd', 'nhhh,hfnh fn hfnhfhgn', '', '2024-09-03 14:20:13', 'open'),
-(2, 1, '', '', '', '', 1, 'momiomioiommoi', 'omiomiomiomihgjkhgjkhgj cfghjghj ghj ghgvh ', 'tickets/attachments/Attachement_1725373256.png', '2024-09-03 14:20:56', 'open');
+(2, 1, '', '', '', '', 1, 'momiomioiommoi', 'omiomiomiomihgjkhgjkhgj cfghjghj ghj ghgvh ', 'tickets/attachments/Attachement_1725373256.png', '2024-09-03 14:20:56', 'open'),
+(3, 1, '', '', '', '', 1, 'kjkljlkj', 'lkjljljk', '', '2024-09-11 13:59:55', 'open'),
+(4, 1, '', '', '', '', 1, 'kjkljlkj', 'lkjljljk', '', '2024-09-11 14:01:54', 'open'),
+(5, 1, '', '', '', '', 1, 'kjkljlkj', 'lkjljljk', '', '2024-09-11 14:02:03', 'open'),
+(6, 1, '', '', '', '', 1, 'grggr', 'gggr', '', '2024-09-11 14:06:20', 'open'),
+(7, 1, '', '', '', '', 1, 'rgrg', 'rgegegeger', '', '2024-09-11 14:06:33', 'open'),
+(8, 1, '', '', '', '', 1, '53435534345', '34554345', '', '2024-09-11 14:08:40', 'open'),
+(9, 1, '', '', '', '', 1, 'htrhrt', 'htrhtrhrthtr', '', '2024-09-11 14:10:01', 'open'),
+(10, 1, '', '', '', '', 1, 'rtrttytytr', 'ytytt', '', '2024-09-11 14:11:27', 'open'),
+(11, 1, '', '', '', '', 1, 'rtrttytytr', 'ytytt', '', '2024-09-11 14:11:50', 'open'),
+(12, 3, '', '', '', '050545405', 0, 'Je test un truc lblelel', 'hghhjgcfdhcjkgfdhjvkgfd', '', '2024-09-11 14:12:36', 'open');
 
 -- --------------------------------------------------------
 
@@ -447,7 +461,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `role`, `first_name`, `last_name`, `email`, `password`, `address`, `phone`, `is_nl_subscriber`, `date_signup`, `fidelity_points`) VALUES
 (1, 'user', 'jean', 'luc', 'malibu1106@gmail.comgre', 'fefefefe', NULL, '0645454', 0, '2024-09-03 07:46:38', 0),
 (2, 'user', 'Françoise', 'Chirac', 'fchiriac@gmail.com', '$2y$10$7zhfoNB.nyyFm/idZCs02eluQ4qNZulcL9sdR2Fy2iJOf/Hf6eCLi', NULL, NULL, 0, '2024-09-03 08:18:57', 0),
-(3, 'user', 'Roberto', 'De Sousa', 'malibu1106@gmail.com', '$2y$10$uGpC1sRvQMPL7robQDAiFOyxeWKeUUK2eSW35z/bjTBWqfiZYDZbq', NULL, NULL, 0, '2024-09-10 07:45:31', 0);
+(3, 'admin', 'Roberto', 'De Sousa', 'malibu1106@gmail.com', '$2y$10$uGpC1sRvQMPL7robQDAiFOyxeWKeUUK2eSW35z/bjTBWqfiZYDZbq', NULL, NULL, 0, '2024-09-10 07:45:31', 0);
 
 --
 -- Index pour les tables déchargées
@@ -587,7 +601,7 @@ ALTER TABLE `dish_ingredients`
 -- AUTO_INCREMENT pour la table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `ingredient_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ingredient_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `newsletter_subscribers`
@@ -599,25 +613,25 @@ ALTER TABLE `newsletter_subscribers`
 -- AUTO_INCREMENT pour la table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `pizzas_bases`
 --
 ALTER TABLE `pizzas_bases`
-  MODIFY `pizza_base_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pizza_base_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `pizzas_pates`
 --
 ALTER TABLE `pizzas_pates`
-  MODIFY `pizza_pate_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pizza_pate_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `pizzas_sizes`
 --
 ALTER TABLE `pizzas_sizes`
-  MODIFY `pizza_size_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pizza_size_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `reviews`
@@ -629,7 +643,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT pour la table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ticket_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `users`
