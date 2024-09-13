@@ -22,11 +22,11 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
 
 
     <p style="color:red"><span style="text-decoration:underline;">Nourriture</span><br>
-        <a href="../back_office/test_create_pizza.php">Ajouter une pizza</a><br>
-        <a href="../back_office/test_create_ingredient.php">Ajouter un ingrédient</a><br>
-        <a href="../back_office/test_create_pate.php">Ajouter une pate</a><br>
-        <a href="../back_office/test_create_base.php">Ajouter une base</a><br>
-        <a href="../back_office/test_create_size.php">Ajouter une taille </a><br>
+        <a href="../back_office/create_pizza.php">Ajouter une pizza</a><br>
+        <a href="../back_office/create_ingredient.php">Ajouter un ingrédient</a><br>
+        <a href="../back_office/create_pate.php">Ajouter une pate</a><br>
+        <a href="../back_office/create_base.php">Ajouter une base</a><br>
+        <a href="../back_office/create_size.php">Ajouter une taille </a><br>
     </p>
 
     <p style="color:red"><span style="text-decoration:underline;">Gestion</span><br>
