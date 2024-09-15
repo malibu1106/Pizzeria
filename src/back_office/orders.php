@@ -51,7 +51,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
         </div>
     </nav>
     <!-- Filtrage des commandes -->
-    <div class="d-flex justify-content-between mt-4 mb-4 w-75 mx-auto">
+    <div class="d-flex justify-content-evenly mt-4 mb-4 mx-auto">
         <a href="orders.php" class="btn btn-primary">En cours</a>
         <a href="orders.php?order_display=pretes" class="btn btn-primary">Prêtes</a>
         <a href="orders.php?order_display=livraisons" class="btn btn-primary">En livraison</a>
@@ -216,15 +216,29 @@ $sql = "
 
 
                 // Nouvelle colonne pour chaque commande
-                echo '<div class="col-12 col-md-6 mb-4">'; // Colonne qui prend 100% de la largeur sur petits écrans, et 50% sur les grands
+                echo '<div class="order col-12 col-lg-6 col-xxl-4 mb-4">'; // Colonne qui prend 100% de la largeur sur petits écrans, et 50% sur les grands
                 echo '<table class="table table-bordered ">';
                 echo '<thead class="'.$statusClass.'"><tr><th colspan="3">
-                <div class="d-flex justify-content-between">Commande n°'.$order['order_id'].' - '.$order['first_name'].' '.$order['last_name'].'
-                    <div class="order_actions d-flex gap-2">
-                    <a href="print_order.php?order_id='.$order['order_id'].'"><img src="../img/icons/order_print.png"
+                <div class="d-flex justify-content-between fs-5">Commande n°'.$order['order_id'].' - '.$order['first_name'].' '.$order['last_name'].'
+                <a href="print_order.php?order_id='.$order['order_id'].'"><img src="../img/icons/order_print.png"
                 alt="imprimer la commande"></a>
+
+                    <div class="d-flex gap-4">';
+                    if ($order['is_delivery_complete'] === 1){
+                        echo '
+    <img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">';
+
+                    }
+                    else{
+                        echo '<img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">
+    <img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">';
+                    }
+
+
+                    
                 
-    <img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">
+    
+    echo '
         
     </div>
     </div>

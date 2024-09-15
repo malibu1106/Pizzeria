@@ -6,3 +6,14 @@ puis un
 	docker-compose up --build
 
 Et le fichier .sql dans le dossier data sera automatiquement créé avec les tables etc.
+
+
+13/09 : 
+
+Need bugfix filtre par ingrédient
+
+cmd admin:
+	Ajouter boolean payé dans les commandes admin
+	opti transition entre les status, gérer les notifs.
+	if else par status > différents btn
+

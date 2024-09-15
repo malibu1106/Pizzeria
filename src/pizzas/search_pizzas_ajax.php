@@ -21,10 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
     // Variable pour ajouter les conditions WHERE
     $conditions = [];
 
-    // Ajout de la condition pour les ingrédients sélectionnés, s'ils existent
+    // Ajout de la condition pour les ingrédients sélectionnés (uniquement les pizzas qui ont tous les ingrédients sélectionnés)
     if (!empty($selected_ingredients)) {
         $placeholders = implode(',', array_fill(0, count($selected_ingredients), '?'));
-        $conditions[] = "di.ingredient_id IN ($placeholders)";
+
+        // Condition : tous les ingrédients sélectionnés doivent être présents dans chaque pizza
+        $conditions[] = "d.name IN (
+            SELECT di.dish_name
+            FROM dish_ingredients di
+            WHERE di.ingredient_id IN ($placeholders)
+            GROUP BY di.dish_name
+            HAVING COUNT(DISTINCT di.ingredient_id) = " . count($selected_ingredients) . "
+        )";
     }
 
     // Ajout des filtres spécifiques
@@ -42,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
     }
 
     // Ajout de la condition pour vérifier que tous les ingrédients sont disponibles
-    // Cette ligne doit se référer à l'alias correct pour la table des ingrédients
     $conditions[] = "i.is_available = 1";
 
     // Construction de la clause WHERE
@@ -50,12 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
         $sql .= " WHERE " . implode(' AND ', $conditions);
     }
 
-    // Ajout du GROUP BY pour regrouper par pizza et filtrer celles qui ont tous les ingrédients disponibles
+    // Ajout du GROUP BY pour regrouper par pizza
     $sql .= "
         GROUP BY d.name, d.description, d.image_url, d.is_discounted
-        HAVING COUNT(DISTINCT di.ingredient_id) = (SELECT COUNT(*) FROM dish_ingredients di2 WHERE di2.dish_name = d.name)
     ";
-    
+
     $sql .= $orderBy;
 
     // Préparation et exécution de la requête
