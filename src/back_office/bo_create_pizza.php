@@ -115,6 +115,6 @@ session_start();
         
         
     }
-    header('Location: test_create_pizza.php');// TEMP
+    header('Location: create_pizza.php');// TEMP
     exit(); // Bonne pratique d'ajouter un exit après un header pour arrêter l'exécution 
 ?>
