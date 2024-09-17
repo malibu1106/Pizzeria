@@ -1,3 +1,7 @@
 .order img {
     width: 32px;
 }
+
+* {
+    overflow-x: hidden;
+}
