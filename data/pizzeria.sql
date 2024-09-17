@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 13 sep. 2024 à 20:02
+-- Généré le : mar. 17 sep. 2024 à 13:25
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -284,7 +284,7 @@ CREATE TABLE `orders` (
   `date_order` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `total` decimal(8,2) NOT NULL,
   `order_status` varchar(255) NOT NULL,
-  `paid` tinyint(1) NOT NULL DEFAULT '0',
+  `is_paid` tinyint(1) NOT NULL DEFAULT '0',
   `is_delivery` tinyint(1) NOT NULL DEFAULT '0',
   `is_delivery_complete` tinyint(1) NOT NULL DEFAULT '0',
   `payment_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
@@ -294,12 +294,12 @@ CREATE TABLE `orders` (
 -- Déchargement des données de la table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `user_id`, `cart_id`, `date_order`, `total`, `order_status`, `paid`, `is_delivery`, `is_delivery_complete`, `payment_method`) VALUES
+INSERT INTO `orders` (`order_id`, `user_id`, `cart_id`, `date_order`, `total`, `order_status`, `is_paid`, `is_delivery`, `is_delivery_complete`, `payment_method`) VALUES
 (1, 1, 1, '2024-09-12 11:54:03', 8.00, 'partie', 1, 0, 0, 'CB'),
 (2, 1, 2, '2024-09-12 06:52:34', 31.40, 'prête', 1, 1, 0, ''),
 (3, 2, 3, '2024-09-05 07:55:29', 20.00, 'partie', 1, 1, 0, ''),
 (5, 1, 5, '2024-09-06 06:57:16', 17.15, 'partie', 1, 0, 0, ''),
-(7, 1, 5, '2024-09-06 07:57:16', 17.88, 'en préparation', 1, 0, 0, 'Nature'),
+(7, 1, 5, '2024-09-06 07:57:16', 17.88, 'en préparation', 0, 0, 0, 'Nature'),
 (8, 1, 5, '2024-09-06 09:57:16', 22.00, 'partie', 1, 0, 1, 'Cheque'),
 (9, 1, 5, '2024-09-06 11:57:16', 17.15, 'en préparation', 1, 0, 0, 'Espèces');
 

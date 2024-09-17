@@ -22,7 +22,7 @@
                 }
                 ?>
                 <?php
-                if (isset($_SESSION['loggedIn']) && $_SESSION['role'] !== "user"){
+                if (isset($_SESSION['role']) && $_SESSION['role'] !== "user"){
                 echo'
                 <li>
                     <a href="../back_office/backoffice.php">Gestion</a>

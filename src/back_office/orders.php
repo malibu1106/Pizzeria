@@ -106,7 +106,7 @@ if (isset($_GET['order_display'])) {
             break;
             case 'terminees':
                 // Filtrer uniquement les commandes terminées
-                $whereClause = "o.paid = 1 AND o.order_status = 'partie' AND (o.is_delivery = 1 AND o.is_delivery_complete = 1 OR o.is_delivery = 0)";
+                $whereClause = "o.is_paid = 1 AND o.order_status = 'partie' AND (o.is_delivery = 1 AND o.is_delivery_complete = 1 OR o.is_delivery = 0)";
                 break;
         case 'archivees':
             // Filtrer uniquement les commandes archivées
@@ -114,7 +114,7 @@ if (isset($_GET['order_display'])) {
             break;
         default:
             // Filtrer les commandes "en cours" par défaut
-            $whereClause = "(o.order_status = 'en cours')";
+            $whereClause = "(o.order_status = 'en préparation')";
             break;
     }
 }
@@ -135,6 +135,7 @@ $sql = "
         o.total,
         o.payment_method,
         o.is_delivery,
+        o.is_paid,
         o.is_delivery_complete, 
         u.first_name, 
         u.last_name, 
@@ -171,206 +172,116 @@ $sql = "
         $user_orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
         $current_order_id = null;
+        echo '<div class="container w-75 test">';
 
         foreach ($user_orders as $order) {
+
+// Déterminer la classe Bootstrap en fonction du statut
+$statusClass = '';
+switch ($order['order_status']) {
+    case 'en préparation':
+        $statusClass = 'bg-warning';
+        break;
+    case 'prête':
+        $statusClass = 'bg-danger';
+        break;
+    case 'partie':
+        $statusClass = 'bg-primary';
+        break;
+    default:
+        $statusClass = 'bg-light';  // Default color if status is unknown
+        $statusInfo = '<span class="text-warning text-uppercase fw-bold">Inconnu</span>';
+        break;
+}
+
             if ($current_order_id !== $order['order_id']) {
                 if ($current_order_id !== null) {
-                    echo '<tr><td colspan="2">Réglement : '.$previous_order_payment.'</td><td><strong>Total : '.$previous_order_total.'€</strong></td></tr>';
-                    echo '</tbody></table><br><br>';
-                    echo '</div>'; // Fin de la colonne
-                }
-                $current_order_id = $order['order_id'];
-                $previous_order_total = $order['total'];
-                $previous_order_payment = $order['payment_method'];  // Store the payment method of the current order
-
-                // Déterminer la classe Bootstrap en fonction du statut
-                $statusClass = '';
-                switch ($order['order_status']) {
-                    case 'en préparation':
-                        $statusClass = 'bg-warning';
-                        break;
-                    case 'prête':
-                        $statusClass = 'bg-danger';
-                        break;
-                    case 'partie':
-                        $statusClass = 'bg-primary';
-                        break;
-                    default:
-                        $statusClass = 'bg-light';  // Default color if status is unknown
-                        $statusInfo = '<span class="text-warning text-uppercase fw-bold">Inconnu</span>';
-                        break;
-                }
-
-    $action_url = "update_order_status.php";
-
-    // Si le paramètre 'order_display' existe dans l'URL
-    if (isset($_GET['order_display'])) {
-        if ($_GET['order_display'] === 'all') {
-            // Ajouter 'all' dans l'URL
-            $action_url .= "?order_display=all";
-        } elseif ($_GET['order_display'] === 'archivée') {
-            // Ajouter 'archivée' dans l'URL
-            $action_url .= "?order_display=archivée";
-        }
-    }
-
-
-                // Nouvelle colonne pour chaque commande
-                echo '<div class="order col-12 col-lg-6 col-xxl-4 mb-4">'; // Colonne qui prend 100% de la largeur sur petits écrans, et 50% sur les grands
-                echo '<table class="table table-bordered ">';
-                echo '<thead class="'.$statusClass.'"><tr><th colspan="3">
-                <div class="d-flex justify-content-between fs-5">Commande n°'.$order['order_id'].' - '.$order['first_name'].' '.$order['last_name'].'
-                <a href="print_order.php?order_id='.$order['order_id'].'"><img src="../img/icons/order_print.png"
-                alt="imprimer la commande"></a>
-
-                    <div class="d-flex gap-4">';
-                    if ($order['is_delivery_complete'] === 1){
-                        echo '
-    <img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">';
-
-                    }
-                    else{
-                        echo '<img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">
-    <img src="../img/icons/order_edit_status.png" alt="éditer le status de la commande" data-bs-toggle="modal" data-bs-target="#editStatusModal-'.$order['order_id'].'">';
-                    }
-
-
-                    
+                    echo '<tr><td colspan="" class="">Réglement : '.$previous_order_payment.'</td>
+                    <td class="text-center font-weight-bold" style="font-weight: bold;">';
                 
-    
-    echo '
-        
-    </div>
-    </div>
-    </th>
-    </tr>
-    </thead>';
-    echo '<tbody>';
-        echo '<tr>
-            <td>Tel : '.$order['phone'].'</td>
-            <td colspan="2">Mail : '.$order['email'].'</td>
-        </tr>';
-        echo '<tr>
-            <td colspan="2">Date : '.date('d/m/Y H:i', strtotime($order['date_order'])).'</td>
-            <td>Status : '.$order['order_status'].'</td>
-
-
-        </tr>';
-        echo '<tr>
-        <td colspan="2">Délivrance : ' . ($order['is_delivery'] == 1 ? 'Livraison' : 'À emporter') . '</td>
-        <td>' . ($order['is_delivery'] == 1 
-            ? ($order['is_delivery_complete'] == 1 ? 'Livrée' : 'En cours') 
-            : ($order['is_delivery_complete'] == 1 ? 'Récupérée' : 'À récupérer')) . '</td>
-      </tr>';
-
-        }
-
-        echo '<tr>';
-            echo '<td colspan="3">'.$order['dish_quantity'].' X '.$order['dish_name'].' : '.$order['size_name'].',
-                '.$order['pate_name'].', '.$order['base_name'].'</td>';
-            echo '</tr>';
-
-        $subtotal = $order['dish_price'] * $order['dish_quantity'];
-
-        if ($order['dish_type'] === 'custom') {
-        $custom_pizza_id = $order['dish_id'];
-        $sql_ingredients = "
-        SELECT i.name
-        FROM custom_pizzas_ingredients cpi
-        JOIN ingredients i ON cpi.ingredient_id = i.ingredient_id
-        WHERE cpi.custom_pizza_id = :custom_pizza_id
-        ";
-
-        $query_ingredients = $db->prepare($sql_ingredients);
-        $query_ingredients->bindValue(':custom_pizza_id', $custom_pizza_id);
-        $query_ingredients->execute();
-        $ingredients = $query_ingredients->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-        $dish_name = $order['dish_name'];
-        $sql_ingredients = "
-        SELECT i.name
-        FROM dish_ingredients di
-        JOIN ingredients i ON di.ingredient_id = i.ingredient_id
-        WHERE di.dish_name = :dish_name
-        ";
-
-        $query_ingredients = $db->prepare($sql_ingredients);
-        $query_ingredients->bindValue(':dish_name', $dish_name);
-        $query_ingredients->execute();
-        $ingredients = $query_ingredients->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        echo '<tr>';
-            echo '<td colspan="3">';
-                $ingredient_names = array_column($ingredients, 'name');
-                echo implode(', ', $ingredient_names);
-                echo '</td>';
-            echo '</tr>';
-
-        echo '<tr>';
-            echo '<td>Prix Unitaire : '.$order['dish_price'].'€</td>';
-            echo '<td colspan="2">Sous-total : '.$subtotal.'€</td>';
-            echo '</tr>';
-        }
-
-        if ($current_order_id !== null) {
-        echo '<tr>
-            <td colspan="2">Réglement : '.$previous_order_payment.'</td>
-            <td><strong>Total : '.$previous_order_total.'€</strong></td>
-        </tr>';
-        echo '</tbody>
-        </table>';
-        echo '
-    </div>'; // Fin de la dernière colonne
-    }
-    ?>
-
-
-        <!-- Modal pour changer le statut -->
-        <?php foreach ($user_orders as $order) : ?>
-        <div class="modal fade" id="editStatusModal-<?=$order['order_id']?>" tabindex="-1"
-            aria-labelledby="editStatusLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editStatusLabel">Modifier le statut de la commande
-                            n°<?=$order['order_id']?></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="<?=$action_url?>" method="POST">
-                        <div class="modal-body">
-                            <input type="hidden" name="order_id" value="<?=$order['order_id']?>">
-                            <div class="mb-3">
-                                <label for="orderStatus" class="form-label">Nouveau statut :</label>
-                                <select class="form-select" name="order_status" id="orderStatus">
-                                    <option value="en préparation"
-                                        <?= ($order['order_status'] == "en préparation" ? 'selected' : '') ?>>En cours
-                                    </option>
-                                    <option value="prête" <?= ($order['order_status'] == "prête" ? 'selected' : '') ?>>
-                                        Prête
-                                    </option>
-                                    <option value="partie"
-                                        <?= ($order['order_status'] == "partie" ? 'selected' : '') ?>>Partie
-                                    </option>
-                                    <option value="terminée"
-                                        <?= ($order['is_delivery_complete'] == 1 ? 'selected' : '') ?>>
-                                        Terminée</option>
-                                    <option value="archivée"
-                                        <?= ($order['order_status'] == "archivée" ? 'selected' : '') ?>>Archivée
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div> <!-- Fin de la grille Bootstrap -->
-</body>
-
-</html>
+                    if ($previous_order_paid === 1) {  // Correction ici pour vérifier la bonne commande
+                        echo '<span class="text-success">PAYÉE</span>';
+                    } else {
+                        echo '<span class="text-danger">NON PAYÉE</span>';
+                    }
+                
+                    echo '</td></tr>';
+                }
+                
+                // Initialiser les informations de la nouvelle commande
+                $current_order_id = $order['order_id'];
+                $previous_order_payment = $order['payment_method'];
+                $previous_order_paid = $order['is_paid'];
+                
+                // Affichage des informations de la nouvelle commande
+                echo '
+               
+                    <table class="table table-bordered">
+                        <thead class="'.$statusClass.'">
+                            <tr>
+                                <th scope="col">Commande n°' . $order['order_id'] . '</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Nom du client</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Téléphone</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>' . $order['order_id'] . '</td>
+                                <td>' . (new DateTime($order['date_order']))->format('d/m/y H:i') . '</td>
+                                <td>' . $order['first_name'] . ' ' . $order['last_name'] . '</td>
+                                <td>' . $order['email'] . '</td>
+                                <td>' . $order['phone'] . '</td>
+                                <td>' . $order['order_status'] . '</td>
+                            </tr>
+                        </tbody>
+                    </table>';
+                
+                echo '
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Plat</th>
+                                <th scope="col">Pâte</th>
+                                <th scope="col">Taille</th>
+                                <th scope="col">Base</th>                                
+                                <th scope="col">Prix unitaire</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                }
+                
+                echo '<tr>
+                    <td>' . $order['dish_quantity'] . '</td>
+                    <td>' . $order['dish_name'] . '</td>
+                    <td>' . $order['pate_name'] . '</td>
+                    <td>' . $order['size_name'] . '</td>
+                    <td>' . $order['base_name'] . '</td>                    
+                    <td>' . number_format($order['dish_price'], 2) . ' €</td>
+                    <td>' . number_format($order['dish_quantity'] * $order['dish_price'], 2) . ' €</td>
+                </tr>';
+                
+                $previous_order_id = $order['order_id'];
+                $previous_order_paid = $order['is_paid'];
+                $previous_order_payment = $order['payment_method'];
+                }
+                
+                // Finir l'affichage de la dernière commande
+                if (isset($previous_order_id) &&    $previous_order_id !== null) {
+                    echo '<tr><td colspan="" class="">Réglement : '.$previous_order_payment.'</td>
+                    <td class="text-center font-weight-bold" style="font-weight: bold;">';
+                    
+                    if ($previous_order_paid === 1) {
+                        echo '<span class="text-success">PAYÉE</span>';
+                    } else {
+                        echo '<span class="text-danger">NON PAYÉE</span>';
+                    }
+                
+                    echo '</td></tr>
+                    </div>';
+                }
+                ?>
