@@ -16,7 +16,8 @@
 }
 
 main {
-    background-image: url("../img/bg_connexion.jpg");
+    background: rgb(35, 90, 71);
+    background: radial-gradient(circle, rgba(35, 90, 71, 1) 30%, rgba(0, 0, 0, 1) 200%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -40,7 +41,7 @@ h2 {
     color: var(--title-color);
     text-align: center;
     padding-top: 1rem;
-    font-family: "itim-regular";
+    font-family: "gagalin-regular";
     font-size: var(--size-xl);
     text-transform: uppercase;
     font-weight: bold;
@@ -176,7 +177,6 @@ button:hover {
 /* ------ desktop ------  */
 @media (min-width: 1024px) {
     main {
-        background-position: bottom;
         height: 900px;
     }
 
