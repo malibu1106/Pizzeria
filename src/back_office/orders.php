@@ -31,7 +31,8 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
 
 <body>
     <!-- Barre de navigation -->
-    <?php include 'backoffice_nav.php'?>
+    <?php include 'backoffice_nav.php';
+    require_once ('../php_sql/db_connect.php');?>
 
     <!-- Filtrage des commandes -->
     <div class="d-flex justify-content-evenly mt-4 mb-4 mx-auto">

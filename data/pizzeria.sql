@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mar. 17 sep. 2024 à 13:25
--- Version du serveur : 8.0.37
+-- Généré le : lun. 23 sep. 2024 à 05:21
+-- Version du serveur : 8.0.39
 -- Version de PHP : 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -295,13 +295,13 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `cart_id`, `date_order`, `total`, `order_status`, `is_paid`, `is_delivery`, `is_delivery_complete`, `payment_method`) VALUES
-(1, 1, 1, '2024-09-12 11:54:03', 8.00, 'partie', 1, 0, 0, 'CB'),
-(2, 1, 2, '2024-09-12 06:52:34', 31.40, 'prête', 1, 1, 0, ''),
-(3, 2, 3, '2024-09-05 07:55:29', 20.00, 'partie', 1, 1, 0, ''),
-(5, 1, 5, '2024-09-06 06:57:16', 17.15, 'partie', 1, 0, 0, ''),
-(7, 1, 5, '2024-09-06 07:57:16', 17.88, 'en préparation', 0, 0, 0, 'Nature'),
-(8, 1, 5, '2024-09-06 09:57:16', 22.00, 'partie', 1, 0, 1, 'Cheque'),
-(9, 1, 5, '2024-09-06 11:57:16', 17.15, 'en préparation', 1, 0, 0, 'Espèces');
+(1, 1, 1, '2024-09-12 11:54:03', 8.00, 'recue', 1, 0, 0, 'CB'),
+(2, 1, 2, '2024-09-12 06:52:34', 31.40, 'recue', 1, 1, 0, ''),
+(3, 2, 3, '2024-09-05 07:55:29', 20.00, 'prete', 1, 1, 0, ''),
+(5, 1, 5, '2024-09-06 06:57:16', 17.15, 'livraison', 1, 0, 1, ''),
+(7, 1, 5, '2024-09-06 07:57:16', 17.88, 'terminee', 1, 0, 0, 'Nature'),
+(8, 1, 5, '2024-09-06 09:57:16', 22.00, 'archivee', 1, 0, 1, 'Cheque'),
+(9, 1, 5, '2024-09-06 11:57:16', 17.15, 'préparation', 1, 0, 0, 'Espèces');
 
 -- --------------------------------------------------------
 
@@ -462,7 +462,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `role`, `first_name`, `last_name`, `email`, `password`, `address`, `phone`, `is_nl_subscriber`, `date_signup`, `fidelity_points`) VALUES
-(1, 'user', 'jean', 'luc', 'malibu1106@gmail.comgre', 'fefefefe', NULL, '0645454', 0, '2024-09-03 07:46:38', 0),
+(1, 'user', 'Jean-luc', 'Dupont', 'malibu1106@gmail.comgre', 'fefefefe', NULL, '0645454319', 0, '2024-09-03 07:46:38', 0),
 (2, 'user', 'Françoise', 'Chirac', 'fchiriac@gmail.com', '$2y$10$7zhfoNB.nyyFm/idZCs02eluQ4qNZulcL9sdR2Fy2iJOf/Hf6eCLi', NULL, '054445454', 0, '2024-09-03 08:18:57', 0),
 (3, 'admin', 'Roberto', 'De Sousa', 'malibu1106@gmail.com', '$2y$10$uGpC1sRvQMPL7robQDAiFOyxeWKeUUK2eSW35z/bjTBWqfiZYDZbq', NULL, NULL, 0, '2024-09-10 07:45:31', 0);
 

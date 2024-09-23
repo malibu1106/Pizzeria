@@ -49,7 +49,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
                 <div class="card mb-3">
                     <div class="card-header bg-success text-white text-center">Commandes</div>
                     <div class="card-body text-center">
-                        <ul class="list-unstyled  mt-2"">
+                        <ul class="list-unstyled  mt-2">
                             <li class=" mb-3"><a href="../back_office/orders.php"
                                 class="btn btn-outline-success btn-sm">Voir les commandes</a></li>
                             <li class="mb-3"><a href="#" class="btn btn-outline-success btn-sm">Vue cuisine</a></li>
@@ -62,7 +62,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
                 <div class="card mb-3">
                     <div class="card-header bg-info text-white text-center">Gestion utilisateurs & stats</div>
                     <div class="card-body text-center">
-                        <ul class="list-unstyled  mt-2"">
+                        <ul class="list-unstyled  mt-2">
                             
                             <li class=" mb-3"><a href="#" class="btn btn-outline-info btn-sm">Messagerie</a></li>
                             <li class="mb-3"><a href="#" class="btn btn-outline-info btn-sm">Statistiques</a></li>
@@ -85,7 +85,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
                 <div class="card mb-3">
                     <div class="card-header bg-primary text-white text-center">Créer des produits</div>
                     <div class="card-body text-center">
-                        <ul class="list-unstyled mt-2"">
+                        <ul class="list-unstyled mt-2">
                         <li class=" mb-3"><a href="../back_office/create_ingredient.php"
                                 class="btn btn-outline-primary btn-sm">Ajouter un ingrédient</a></li>
                             <li class=" mb-3"><a href="../back_office/create_pizza.php"
@@ -131,7 +131,7 @@ $_SESSION['logged_user_id'] = 1; // TEMP : Réglage temporaire pour stocker l'ID
                 <div class="card mb-3">
                     <div class="card-header bg-danger text-white text-center">Supprimer des produits</div>
                     <div class="card-body text-center">
-                        <ul class="list-unstyled  mt-2"">
+                        <ul class="list-unstyled  mt-2">
                         <li class=" mb-3"><a href="../back_office/test_delete_ingredient.php"
                                 class="btn btn-outline-danger btn-sm">Supprimer un ingrédient</a></li>
                             <li class=" mb-3"><a href="../back_office/test_delete_pizza.php"
