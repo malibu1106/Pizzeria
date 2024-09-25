@@ -31,13 +31,13 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
         
         // Choix de l'image de livraison ou à emporter
         $image_delivrance = $order['is_delivery'] === 1 ? 
-            '<img src="../img/icons/scooter.png" class="img-fluid" style="max-height: 50px;" alt="Image de livraison">' :
-            '<img src="../img/icons/take_away.png" class="img-fluid" style="max-height: 50px;" alt="Image à emporter">';
+            '<img src="../img/icons/orders/scooter.png" class="img-fluid" style="max-height: 50px;" alt="Image de livraison">' :
+            '<img src="../img/icons/orders/take_away.png" class="img-fluid" style="max-height: 50px;" alt="Image à emporter">';
     ?>
 
     <!-- Carte de la commande -->
     <div class="col-md-6">
-        <div class="card mb-3 border-2 border-dark">
+        <div class="card mb-3 border-dark">
             <!-- En-tête de la carte -->
             <div class="card-header bg-dark text-white text-center">
                 Commande n°<?= $order['order_id']; ?>
@@ -48,45 +48,15 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- Informations sur la commande -->
                 <div class="list-unstyled mt-2">
-                    <p class="text-center fw-bold">Informations commande</p>
-                    <div class="mb-3 d-flex justify-content-between">
-                        <div class="col-4 text-center"><?= $order['first_name'].' '. $order['last_name']?></div>
-                        <div class="col-4 text-center"><?= $order['phone']?></div>
-                        <div class="col-4 text-center"><?= $order['email']?></div>
-                    </div>
-                    <div class="mb-3 d-flex justify-content-between align-items-center">
-                        <div class="col-4 text-center"><?= $dateFormatted ?></div>
-                        <div class="col-4 text-center"><?= $image_delivrance ?></div>
-                        <div class="col-4 text-center d-flex justify-content-between">
-                            <?php
-                            if ($order['is_paid']){
-                                echo '<div class="text-uppercase border border-2 border-success rounded text-success fw-bold py-2 px-4">
-                                        payée
-                                    </div>';
-                            }     
-                            else{
-                                echo '<div class="text-uppercase border border-2 border-danger rounded text-danger fw-bold py-2 px-4">
-                                        à régler
-                                    </div>';
-                            }
-                            ?>
-                            
-                            
-                            <div class="fw-bold p-2">
-                            Total : <?= $order['total']?>€
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
 
-                <!-- Actions sur la commande (à personnaliser) -->
-                <div class="list-unstyled mt-2">
-                    <p class="text-center fw-bold">Actions commande</p>
-                    <p class="mb-3">X X X</p>
-                </div>
+                
 
                 <!-- Contenu de la commande -->
                 <div class="list-unstyled mt-2">
+                <span class="position-absolute end-0 top-0 px-4 py-5"><?= $image_delivrance ?></span>
                     <p class="text-center fw-bold">Contenu commande</p>
 
                     <?php
@@ -283,6 +253,46 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
             </div>
+            <!-- Actions sur la commande (à personnaliser) -->
+            <div class="list-unstyled mt-3">
+                    <p class="text-center fw-bold">Informations commande</p>
+                    <div class="mb-5 d-flex justify-content-between">
+                        <div class="col-3 text-center"><?= $order['first_name'].' '. $order['last_name']?></div>
+                        <div class="col-3 text-center"><?= $order['phone']?></div>
+                        <div class="col-3 text-center"><?= $order['email']?></div>
+                        <div class="col-3 text-center"><?= $dateFormatted ?></div>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-between align-items-center px-4">
+
+                    
+                    
+                        
+                        
+                        
+                        
+                            <?php
+                            if ($order['is_paid']){
+                                echo '<div class="d-flex gap-3 align-items-center text-uppercase border border-2 border-success rounded text-success fw-bold py-2 px-3" style="height: 50px;">
+                                        <div class="">payée</div>
+                                        <img src="../img/icons/orders/'.$order['payment_method'].'.png" class="img-fluid" style="max-height: 30px;" alt="Image de livraison">
+                                    </div>';
+                                echo '';
+                            }     
+                            else{
+                                echo '<div class="d-flex align-items-center justify-content-center text-uppercase border border-2 border-danger rounded text-danger fw-bold py-2 px-4" style="height: 50px;">
+                                        à régler
+                                    </div>';
+                            }
+                            ?><img src="../img/icons/orders/next.png" style="width:50px;">
+                            <div class="fw-bold p-2">
+                            Total : <?= $order['total']?>€
+                            </div>
+                            
+                            
+                            
+                        
+                    </div>
+                </div>
         </div>
     </div>
     <?php endforeach; ?>
