@@ -5,3 +5,37 @@
 * {
     overflow-x: hidden;
 }
+
+.switch-status-arrow{
+    width:50px;
+    height:50px;
+    line-height:42px;
+    font-size: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align:center ;
+}
+
+a {
+    text-decoration: none;
+    color:white;
+}
+.multi-color{
+    background: linear-gradient(90deg, 
+        #343a40 0%, #343a40 25%,  /* dark */
+        #ffc107 25%, #ffc107 50%,  /* warning */
+        #dc3545 50%, #dc3545 75%,  /* danger */
+        #007bff 75%, #007bff 100%  /* primary */
+    );
+}
+
+.multi-color-arch{
+    background: linear-gradient(90deg, 
+    #343a40 0%, #343a40 20%,  /* dark */
+    #ffc107 20%, #ffc107 40%,  /* warning */
+    #dc3545 40%, #dc3545 60%,  /* danger */
+    #007bff 60%, #007bff 80%,  /* primary */
+    #28a745 80%, #28a745 100%    /* success */
+
+);
+}

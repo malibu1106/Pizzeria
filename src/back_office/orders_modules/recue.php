@@ -24,7 +24,7 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!-- Contenu principal -->
-<div class="container p-4 d-flex mw-100 gap-4 justify-content-center">
+<div class="container p-4 d-flex gap-4 justify-content-center flex-wrap mw-100">
     <?php foreach ($orders as $order): 
         // Formatage de la date de commande
         $dateFormatted = date('d/m/y H:i', strtotime($order['date_order']));
@@ -36,7 +36,7 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <!-- Carte de la commande -->
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="card mb-3 border-dark">
             <!-- En-tête de la carte -->
             <div class="card-header bg-dark text-white text-center">
@@ -283,7 +283,13 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                                         à régler
                                     </div>';
                             }
-                            ?><img src="../img/icons/orders/next.png" style="width:50px;">
+                            ?>
+                            
+                            <a href="update_status.php?status=preparation&order_id=<?=$order['order_id']?>">
+                                <div class="switch-status-arrow bg-warning">></div>
+                            </a>
+                            
+                            
                             <div class="fw-bold p-2">
                             Total : <?= $order['total']?>€
                             </div>

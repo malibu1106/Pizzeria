@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
     $sql = "
         SELECT d.name, d.description, MIN(d.price) as price, MAX(d.sells_count) as sells_count, d.image_url, d.is_discounted
         FROM dishes d
-        LEFT JOIN dish_ingredients di ON d.name = di.dish_name
+        LEFT JOIN dishes_ingredients di ON d.name = di.dish_name
         LEFT JOIN ingredients i ON di.ingredient_id = i.ingredient_id
     ";
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ingredients'])) {
         // Condition : tous les ingrédients sélectionnés doivent être présents dans chaque pizza
         $conditions[] = "d.name IN (
             SELECT di.dish_name
-            FROM dish_ingredients di
+            FROM dishes_ingredients di
             WHERE di.ingredient_id IN ($placeholders)
             GROUP BY di.dish_name
             HAVING COUNT(DISTINCT di.ingredient_id) = " . count($selected_ingredients) . "
