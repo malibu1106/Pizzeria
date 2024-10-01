@@ -47,9 +47,9 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Carte de la commande -->
     <div class="col-md-6">
-        <div class="card mb-3 border-warning">
+        <div class="card mb-3 border-secondary">
             <!-- En-tête de la carte -->
-            <div class="card-header bg-success text-white text-center">
+            <div class="card-header bg-secondary text-white text-center">
                 Commande n°<?= $order['order_id']; ?>
             </div>
 

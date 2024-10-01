@@ -37,7 +37,7 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Carte de la commande -->
     <div class="col-md-5">
-        <div class="card mb-3 border-dark">
+        <div class="card mb-3 border-danger">
             <!-- En-tête de la carte -->
             <div class="card-header bg-danger text-white text-center">
                 Commande n°<?= $order['order_id']; ?>
@@ -289,17 +289,20 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="switch-status-arrow bg-warning"><</div>
                             </a>
 <?php
-if ($order['is_delivery'] === 1){
+
+if ($order['is_paid'] === 1 && $order['is_delivery'] === 0){
+    echo'<a href="update_status.php?status=terminee&order_id='.$order['order_id'].'">
+                                <div class="switch-status-arrow bg-success">></div>
+                            </a>';}
+
+elseif ($order['is_delivery'] === 1){
     echo'<a href="update_status.php?status=livraison&order_id='.$order['order_id'].'">
                                 <div class="switch-status-arrow bg-primary">></div>
                             </a>';
 }
-else{
-    echo'<a href="update_status.php?status=terminee&order_id='.$order['order_id'].'">
-                                <div class="switch-status-arrow bg-success">></div>
-                            </a>';
-}
-                            
+
+
+                    
 
                             
                             
